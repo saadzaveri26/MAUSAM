@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meghsetu — National Weather Big Data Analytics Platform</title>
+<meta name="description" content="SIH 2026 · PS 26069 · Ministry of Earth Sciences / IMD — real-time weather intelligence from social media, citizen reports, and public data across India." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/landing.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand"><span class="brand-mark"></span></div>
+    <nav>
+      <a href="#pipeline">How it works</a>
+      <a href="#features">Platform</a>
+      <a href="#stack">Tech stack</a>
+      <a class="btn-nav" href="../app_build/frontend/dashboard/index.html">Open dashboard →</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="ps-tag">SIH 2026 · PS 26069 · Ministry of Earth Sciences — IMD</div>
+      <h1>India's weather signal, gathered from everywhere it's reported.</h1>
+      <p class="hero-sub">
+        Social media posts tagged #IMD, citizen reports, public datasets, and partner APIs —
+        collected, verified, and mapped in real time, so a flooded street in Guwahati
+        and a dust storm in Jaipur show up on the same national picture within minutes.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="../app_build/frontend/dashboard/index.html">Explore the live dashboard</a>
+        <a class="btn-secondary" href="../app_build/frontend/citizen-report/index.html">Report an event</a>
+      </div>
+      <div class="ticker-wrap">
+        <div class="ticker-label">live feed</div>
+        <div class="ticker" id="ticker">
+          <div class="ticker-track" id="ticker-track"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 420" class="radar">
+        <circle cx="210" cy="210" r="200" class="ring ring-1" />
+        <circle cx="210" cy="210" r="150" class="ring ring-2" />
+        <circle cx="210" cy="210" r="100" class="ring ring-3" />
+        <circle cx="210" cy="210" r="50" class="ring ring-4" />
+        <line x1="210" y1="10" x2="210" y2="410" class="crosshair" />
+        <line x1="10" y1="210" x2="410" y2="210" class="crosshair" />
+        <g class="sweep-group">
+          <path d="M210,210 L210,10 A200,200 0 0,1 380,120 Z" class="sweep" />
+        </g>
+        <circle cx="255" cy="150" r="5" class="blip blip-a" />
+        <circle cx="150" cy="260" r="4" class="blip blip-b" />
+        <circle cx="300" cy="290" r="6" class="blip blip-c" />
+        <circle cx="170" cy="130" r="4" class="blip blip-d" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pipeline">
+  <div class="wrap">
+    <h2 class="section-title">From a hashtag to a verified data point</h2>
+    <p class="section-sub">Every report — whichever source it comes from — moves through the same four-stage pipeline.</p>
+    <div class="pipeline-row">
+      <div class="pipeline-step">
+        <div class="step-num">01</div>
+        <h3>Ingest</h3>
+        <p>Twitter/X posts tagged #IMD, citizen submissions, IMD/AWS station feeds, and news sources are pulled into a unified stream.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">02</div>
+        <h3>Classify</h3>
+        <p>An ML pipeline tags each report's event type — rainfall, flooding, heatwave, cyclone, and more — with a confidence score.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">03</div>
+        <h3>Verify</h3>
+        <p>A credibility model scores source trust and content signals, flags likely fake reports, and merges duplicates automatically.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">04</div>
+        <h3>Visualize</h3>
+        <p>Verified, deduplicated reports land on the national map and analytics dashboard within moments of ingestion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="features">
+  <div class="wrap">
+    <h2 class="section-title">Built for the people who watch the sky for a living</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Date, event & location filters</h3>
+        <p>Slice the national feed by day, event category, state, or city — the same filters analysts use during an active weather system.</p>
+      </div>
+      <div class="feature">
+        <h3>Verification tracking</h3>
+        <p>Every report carries a status — pending, auto-flagged, verified, rejected — with a full audit trail of who verified it and when.</p>
+      </div>
+      <div class="feature">
+        <h3>Duplicate & fake-report detection</h3>
+        <p>TF-IDF similarity clustering merges re-shared posts of the same event; a credibility model catches clickbait and low-trust sources.</p>
+      </div>
+      <div class="feature">
+        <h3>Live GPS-mapped events</h3>
+        <p>Reports plot on an interactive map by category and severity, refreshing continuously as new data is ingested.</p>
+      </div>
+      <div class="feature">
+        <h3>Citizen reporting</h3>
+        <p>Anyone can submit a ground-level report with location, photos, and hashtags — feeding the same pipeline as social media.</p>
+      </div>
+      <div class="feature">
+        <h3>Admin moderation console</h3>
+        <p>Reviewers verify or reject flagged reports and track source credibility over time, retraining the trust model as they go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stack">
+  <div class="wrap">
+    <h2 class="section-title">Tech stack</h2>
+    <p class="section-sub">Open-source, horizontally scalable, and swappable at every layer for production deployment.</p>
+    <div class="stack-grid">
+      <div class="stack-col">
+        <h4>Ingestion</h4>
+        <ul><li>Simulated multi-source connectors (prototype)</li><li>Designed for Twitter/X streaming API, IMD/AWS feeds, Kafka</li></ul>
+      </div>
+      <div class="stack-col">
+        <h4>ML / AI</h4>
+        <ul><li>scikit-learn — TF-IDF + Naive Bayes event classifier</li><li>Heuristic + feature-based credibility scoring</li><li>Cosine-similarity duplicate detection</li></ul>
+      </div>
+      <div class="stack-col">
+        <h4>Backend & storage</h4>
+        <ul><li>FastAPI (Python)</li><li>SQLAlchemy ORM over SQLite (prototype) → PostgreSQL/TimescaleDB (production)</li></ul>
+      </div>
+      <div class="stack-col">
+        <h4>Dashboard & frontend</h4>
+        <ul><li>HTML / CSS / vanilla JS</li><li>Chart.js for analytics, Leaflet.js for the live map</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>Smart India Hackathon 2026 · Problem Statement 26069 · Ministry of Earth Sciences — India Meteorological Department</div>
+    <a href="../app_build/frontend/dashboard/index.html">Open dashboard →</a>
+  </div>
+</footer>
+
+<script src="assets/landing.js"></script>
+</body>
+</html>

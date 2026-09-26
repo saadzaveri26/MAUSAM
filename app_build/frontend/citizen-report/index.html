@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Report Weather — Meghsetu Citizen Reporting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/theme.css" />
+<style>
+  body { display: flex; justify-content: center; padding: 40px 16px 80px; }
+  .wrap { width: 100%; max-width: 560px; }
+  .back-link { font-size: 13px; color: var(--ink-2); text-decoration: none; display: inline-block; margin-bottom: 18px; }
+  header { margin-bottom: 26px; }
+  header h1 { font-family: var(--font-display); font-size: 24px; margin: 0 0 6px; }
+  header p { color: var(--ink-2); font-size: 14px; margin: 0; line-height: 1.5; }
+
+  .card { background: var(--navy-900); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .field { margin-bottom: 16px; }
+  .field textarea { width: 100%; min-height: 90px; resize: vertical; }
+  .field input, .field select { width: 100%; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .geo-btn { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--blue); background: none; border: none; padding: 4px 0; }
+  .geo-status { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+
+  .preview { margin-top: 6px; padding: 10px 12px; border-radius: 8px; background: var(--navy-800); border: 1px solid var(--line); font-size: 12.5px; color: var(--ink-1); display: none; }
+  .preview.show { display: block; }
+  .preview b { color: var(--ink-0); }
+
+  .submit-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+  #submit-status { font-size: 13px; }
+  .success-box { background: var(--teal-dim); border: 1px solid rgba(43,179,163,0.4); color: var(--teal); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; margin-bottom: 18px; display: none; }
+  .success-box.show { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../dashboard/index.html">&larr; Back to dashboard</a>
+  <header>
+    <h1>Report a weather event</h1>
+    <p>Your report feeds directly into the national analytics pipeline. Tag it with #IMD so it's discoverable alongside social-media reports from your area.</p>
+  </header>
+
+  <div class="success-box" id="success-box"></div>
+
+  <div class="card">
+    <form id="report-form">
+      <div class="field">
+        <label>What are you seeing? *</label>
+        <textarea id="text" placeholder="e.g. Heavy rainfall and waterlogging near Andheri station since 4pm #IMD" required></textarea>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>City *</label>
+          <input type="text" id="city" placeholder="e.g. Mumbai" required />
+        </div>
+        <div class="field">
+          <label>State *</label>
+          <input type="text" id="state" placeholder="e.g. Maharashtra" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <button type="button" class="geo-btn" id="btn-geo">📍 Use my current GPS location</button>
+        <div class="geo-status" id="geo-status">Location not attached yet — reports with GPS data are prioritized for verification.</div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Hashtags</label>
+          <input type="text" id="hashtags" placeholder="#IMD, #MumbaiRains" />
+        </div>
+        <div class="field">
+          <label>Photo/video URL (optional)</label>
+          <input type="text" id="media_url" placeholder="https://…" />
+        </div>
+      </div>
+
+      <div class="preview" id="preview"></div>
+
+      <div class="submit-row" style="margin-top:18px;">
+        <button type="submit" class="btn btn-primary">Submit report</button>
+        <span id="submit-status"></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../shared/api.js"></script>
+<script src="report.js"></script>
+</body>
+</html>

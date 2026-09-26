@@ -1,0 +1,135 @@
+/*
+  Design tokens — National Weather Big Data Analytics Platform
+
+  Palette drawn from the subject itself: monsoon-night navy as the working
+  background (this is an operations console, not a marketing surface),
+  a signal-amber for attention/alerts (matches IMD warning-color language),
+  a verified-teal for confirmed data, and an alert-red reserved only for
+  rejected/danger states so it stays meaningful.
+*/
+:root {
+  --navy-950: #071824;
+  --navy-900: #0f2a3d;
+  --navy-800: #16394f;
+  --slate-700: #1c3e52;
+  --slate-600: #2c5771;
+  --line: rgba(233, 241, 245, 0.12);
+  --line-soft: rgba(233, 241, 245, 0.06);
+  --ink-0: #eef4f7;
+  --ink-1: #b9c9d3;
+  --ink-2: #7f95a1;
+
+  --amber: #f5a623;
+  --amber-dim: rgba(245, 166, 35, 0.16);
+  --teal: #2bb3a3;
+  --teal-dim: rgba(43, 179, 163, 0.16);
+  --red: #e5484d;
+  --red-dim: rgba(229, 72, 77, 0.16);
+  --blue: #4f9dde;
+  --blue-dim: rgba(79, 157, 222, 0.16);
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--navy-950);
+  color: var(--ink-0);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--slate-600); border-radius: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+a { color: inherit; }
+
+.mono-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pill-amber { background: var(--amber-dim); color: var(--amber); }
+.pill-teal { background: var(--teal-dim); color: var(--teal); }
+.pill-red { background: var(--red-dim); color: var(--red); }
+.pill-blue { background: var(--blue-dim); color: var(--blue); }
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--navy-800);
+  color: var(--ink-0);
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn:hover { border-color: var(--slate-600); background: var(--slate-700); }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #1a1002;
+  font-weight: 600;
+}
+.btn-primary:hover { background: #ffb748; border-color: #ffb748; }
+
+.btn-teal {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #052824;
+  font-weight: 600;
+}
+.btn-teal:hover { background: #35c9b7; }
+
+.btn-red {
+  background: transparent;
+  border-color: var(--red);
+  color: var(--red);
+}
+.btn-red:hover { background: var(--red-dim); }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  background: var(--navy-800);
+  border: 1px solid var(--line);
+  color: var(--ink-0);
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 13.5px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+input::placeholder, textarea::placeholder { color: var(--ink-2); }
+
+label {
+  font-size: 12px;
+  color: var(--ink-2);
+  display: block;
+  margin-bottom: 5px;
+}
