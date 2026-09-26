@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>National Weather Analytics — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="../shared/theme.css" />
+<style>
+  .shell { display: grid; grid-template-columns: 232px 1fr; min-height: 100vh; }
+
+  .nav { background: var(--navy-900); border-right: 1px solid var(--line); padding: 22px 16px; position: sticky; top: 0; height: 100vh; }
+  .brand { display: flex; align-items: center; gap: 10px; padding: 0 6px 22px; border-bottom: 1px solid var(--line-soft); margin-bottom: 18px; }
+  .brand-mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--amber), #ff7a3d); flex-shrink: 0; }
+  .brand-text { font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.25; }
+  .brand-text span { display: block; font-family: var(--font-body); font-weight: 500; color: var(--ink-2); font-size: 11px; }
+
+  .nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13.5px; color: var(--ink-1); text-decoration: none; margin-bottom: 2px; }
+  .nav-link.active { background: var(--slate-700); color: var(--ink-0); }
+  .nav-link:hover:not(.active) { background: var(--line-soft); }
+  .nav-section-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); margin: 18px 12px 8px; }
+
+  .main { padding: 22px 28px 60px; max-width: 1500px; }
+  .topbar { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 10px; }
+  .topbar h1 { font-family: var(--font-display); font-size: 21px; margin: 0; font-weight: 600; }
+  .topbar .sub { color: var(--ink-2); font-size: 13px; margin-top: 3px; }
+  .live-indicator { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--teal); }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 0 rgba(43,179,163,.6); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(43,179,163,.5); } 70% { box-shadow: 0 0 0 8px rgba(43,179,163,0); } 100% { box-shadow: 0 0 0 0 rgba(43,179,163,0); } }
+
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; background: var(--navy-900); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 18px 0 22px; }
+  .filter-field { min-width: 150px; }
+  .filter-field input, .filter-field select { width: 100%; }
+  .filter-actions { margin-left: auto; display: flex; gap: 8px; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 22px; }
+  .kpi { background: var(--navy-900); border: 1px solid var(--line); border-radius: 12px; padding: 15px 16px; }
+  .kpi .num { font-family: var(--font-display); font-size: 26px; font-weight: 600; }
+  .kpi .label { font-size: 11.5px; color: var(--ink-2); margin-top: 2px; }
+  .kpi.amber .num { color: var(--amber); }
+  .kpi.teal .num { color: var(--teal); }
+  .kpi.red .num { color: var(--red); }
+
+  .grid-2 { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .panel { background: var(--navy-900); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 4px; font-size: 13.5px; font-weight: 600; }
+  .panel .panel-sub { font-size: 11.5px; color: var(--ink-2); margin-bottom: 12px; }
+  .panel canvas { max-height: 230px; }
+
+  #map { height: 420px; border-radius: 10px; overflow: hidden; }
+  .leaflet-popup-content-wrapper { background: var(--navy-800); color: var(--ink-0); border-radius: 8px; }
+  .leaflet-popup-tip { background: var(--navy-800); }
+
+  .table-panel table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table-panel th { text-align: left; color: var(--ink-2); font-weight: 500; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.03em; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  .table-panel td { padding: 9px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  .table-panel tr:hover td { background: var(--line-soft); }
+  .report-text { max-width: 360px; color: var(--ink-1); }
+
+  @media (max-width: 1100px) {
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .shell { grid-template-columns: 1fr; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">Meghsetu<span>National Weather Analytics</span></div>
+    </div>
+    <a class="nav-link active" href="index.html">Analytics Dashboard</a>
+    <a class="nav-link" href="../admin/index.html">Admin Panel</a>
+    <a class="nav-link" href="../citizen-report/index.html">Submit a Report</a>
+    <div class="nav-section-label">Problem Statement</div>
+    <div style="padding: 0 12px; font-size: 12px; color: var(--ink-2); line-height: 1.6;">
+      SIH 26069 — Ministry of Earth Sciences / IMD<br>National Weather Big Data Analytics Platform
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1>Real-time Weather Intelligence</h1>
+        <div class="sub">Aggregated from social media, citizen reports, and public sources across India</div>
+      </div>
+      <div class="live-indicator"><span class="live-dot"></span> Live pipeline connected</div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-field">
+        <label>From date</label>
+        <input type="date" id="f-date-from" />
+      </div>
+      <div class="filter-field">
+        <label>To date</label>
+        <input type="date" id="f-date-to" />
+      </div>
+      <div class="filter-field">
+        <label>Event type</label>
+        <select id="f-category"><option value="">All events</option></select>
+      </div>
+      <div class="filter-field">
+        <label>State</label>
+        <select id="f-state"><option value="">All states</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Verification</label>
+        <select id="f-status">
+          <option value="">All statuses</option>
+          <option>Verified</option>
+          <option>Pending</option>
+          <option>Auto-Flagged</option>
+          <option>Rejected</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button class="btn" id="btn-reset">Reset</button>
+        <button class="btn btn-primary" id="btn-apply">Apply filters</button>
+      </div>
+    </div>
+
+    <div class="kpi-row" id="kpi-row">
+      <div class="kpi"><div class="num" id="kpi-total">—</div><div class="label">Total reports</div></div>
+      <div class="kpi teal"><div class="num" id="kpi-verified">—</div><div class="label">Verified</div></div>
+      <div class="kpi"><div class="num" id="kpi-pending">—</div><div class="label">Pending review</div></div>
+      <div class="kpi amber"><div class="num" id="kpi-flagged">—</div><div class="label">Auto-flagged (ML)</div></div>
+      <div class="kpi red"><div class="num" id="kpi-rejected">—</div><div class="label">Rejected</div></div>
+      <div class="kpi"><div class="num" id="kpi-dupes">—</div><div class="label">Duplicates filtered</div></div>
+    </div>
+
+    <div class="panel" style="margin-bottom:14px;">
+      <h3>Live event map</h3>
+      <div class="panel-sub">Reports plotted by GPS location, colored by event category</div>
+      <div id="map"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Reports over time</h3>
+        <div class="panel-sub">Daily ingested volume, last 14 days</div>
+        <canvas id="chart-timeseries"></canvas>
+      </div>
+      <div class="panel">
+        <h3>Verification status</h3>
+        <div class="panel-sub">Human + ML verification breakdown</div>
+        <canvas id="chart-verification"></canvas>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Events by category</h3>
+        <div class="panel-sub">Classified automatically by the ML pipeline</div>
+        <canvas id="chart-category"></canvas>
+      </div>
+      <div class="panel">
+        <h3>Top states by report volume</h3>
+        <div class="panel-sub">Location-wise distribution</div>
+        <canvas id="chart-state"></canvas>
+      </div>
+    </div>
+
+    <div class="panel table-panel">
+      <h3>Recent reports</h3>
+      <div class="panel-sub">Latest entries matching current filters</div>
+      <table>
+        <thead><tr><th>Time</th><th>Location</th><th>Event</th><th>Severity</th><th>Report</th><th>Credibility</th><th>Status</th></tr></thead>
+        <tbody id="reports-tbody"><tr><td colspan="7" style="color:var(--ink-2);">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="../shared/api.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

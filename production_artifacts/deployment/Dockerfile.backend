@@ -1,0 +1,16 @@
+# Production-style container for the FastAPI backend.
+# Build from repo root: docker build -f production_artifacts/deployment/Dockerfile.backend -t weather-platform-api ./app_build/backend
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY app_build/backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app_build/backend/ .
+
+ENV DATABASE_URL=sqlite:///./weather_platform.db
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
