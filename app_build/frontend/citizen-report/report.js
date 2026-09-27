@@ -28,7 +28,7 @@ document.getElementById("report-form").addEventListener("submit", async (e) => {
     text: document.getElementById("text").value.trim(),
     city: document.getElementById("city").value.trim(),
     state: document.getElementById("state").value.trim(),
-    hashtags: document.getElementById("hashtags").value.trim() || "#IMD",
+    hashtags: document.getElementById("hashtags").value.trim() || "#WeatherUpdate",
     media_url: document.getElementById("media_url").value.trim() || null,
     media_type: document.getElementById("media_url").value.trim() ? "image" : "none",
     latitude: capturedLat,

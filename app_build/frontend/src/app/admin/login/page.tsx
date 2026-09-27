@@ -68,7 +68,7 @@ function LoginForm() {
         </div>
 
         <p className="text-xs text-ink-1 mb-6 leading-relaxed">
-          Authorized IMD disaster management operators only. Enter the shared administrative key to access report verification, credibility queues, and source trust management.
+          Authorized disaster management operators only. Enter the shared administrative key to access report verification, credibility queues, and source trust management.
         </p>
 
         {error && (

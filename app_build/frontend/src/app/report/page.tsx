@@ -5,7 +5,7 @@ import CitizenReportForm from '@/components/report/CitizenReportForm';
 
 export const metadata: Metadata = {
   title: 'Submit Weather Report | MeghSetu',
-  description: 'Submit ground-truth weather observations and severe weather incident reports to IMD.',
+  description: 'Submit ground-truth weather observations and severe weather incident reports.',
 };
 
 export default function ReportPage() {
@@ -16,7 +16,7 @@ export default function ReportPage() {
         <CitizenReportForm />
       </main>
       <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 bg-surface">
-        MeghSetu · National Weather Big Data Analytics Platform · Ministry of Earth Sciences (MoES)
+        MeghSetu · National Weather Big Data Analytics Platform
       </footer>
     </div>
   );

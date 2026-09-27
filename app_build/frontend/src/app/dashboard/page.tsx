@@ -16,7 +16,7 @@ export default function DashboardPage() {
         <AnalyticsDashboardView />
       </main>
       <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 bg-surface">
-        MeghSetu · National Weather Big Data Analytics Platform · India Meteorological Department (MoES)
+        MeghSetu · National Weather Big Data Analytics Platform
       </footer>
     </div>
   );

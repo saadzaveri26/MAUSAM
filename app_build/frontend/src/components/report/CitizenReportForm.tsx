@@ -176,12 +176,12 @@ export default function CitizenReportForm() {
     setSubmitError(null);
 
     const payload = {
-      text: `${text.trim()} #${category.replace(/\s+/g, '')} #IMD`,
+      text: `${text.trim()} #${category.replace(/\s+/g, '')} #WeatherUpdate`,
       city: city.trim(),
       state: state,
       latitude: gps.latitude,
       longitude: gps.longitude,
-      hashtags: `#${category.replace(/\s+/g, '')},#IMD`,
+      hashtags: `#${category.replace(/\s+/g, '')},#WeatherUpdate`,
       media_url: null,
       media_type: 'none',
       reporter_handle: reporterHandle.trim() || 'citizen_anonymous',
@@ -312,7 +312,7 @@ export default function CitizenReportForm() {
                   {mlResult.severity}
                 </span>
                 <span className="text-xs text-ink-1">
-                  IMD Scale
+                  Severity Scale
                 </span>
               </div>
               <p className="text-[11px] text-ink-2 mt-1">
@@ -406,7 +406,7 @@ export default function CitizenReportForm() {
             <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
             <span>Live Intake Channel</span>
           </div>
-          <span className="block text-[11px] text-ink-2">MoES · IMD Ground Truth</span>
+          <span className="block text-[11px] text-ink-2">Real-Time Ground Truth</span>
         </div>
       </div>
 
@@ -608,7 +608,7 @@ export default function CitizenReportForm() {
 
         <div className="pt-2 text-center">
           <span className="text-[11px] text-ink-2">
-            Government of India · Ministry of Earth Sciences · India Meteorological Department
+            MeghSetu · National Weather Big Data Analytics Platform
           </span>
         </div>
       </form>

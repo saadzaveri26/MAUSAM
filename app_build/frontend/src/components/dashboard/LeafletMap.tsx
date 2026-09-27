@@ -224,7 +224,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
         {/* Operational Severity Legend */}
         <div className="absolute bottom-4 left-4 z-[400] bg-surface/95 border border-line rounded-md p-3 shadow-l3 text-xs space-y-2 pointer-events-auto backdrop-blur-none">
           <span className="text-[10px] text-ink-2 uppercase tracking-wider block font-semibold">
-            IMD Alert Severity
+            Weather Alert Severity
           </span>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
             <div className="flex items-center gap-2">

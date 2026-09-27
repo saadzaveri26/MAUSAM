@@ -33,7 +33,7 @@ export default function Header() {
               MeghSetu
             </span>
             <span className="text-[10px] text-slate-300 font-sans block mt-0.5">
-              MoES · India Meteorological Department
+              National Weather Intelligence Platform
             </span>
           </div>
         </Link>

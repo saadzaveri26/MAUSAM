@@ -25,7 +25,7 @@ export default function LandingHeader() {
               MeghSetu
             </span>
             <span className="text-[11px] text-ink-1 font-sans mt-1 leading-none">
-              MoES · India Meteorological Department
+              National Weather Intelligence Platform
             </span>
           </div>
         </Link>

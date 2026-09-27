@@ -7,7 +7,7 @@ import AdminConsoleView from '@/components/admin/AdminConsoleView';
 
 export const metadata: Metadata = {
   title: 'Admin Verification Console | MeghSetu',
-  description: 'Privileged verification queue, ground-truth auditing, and source trust management for IMD operators.',
+  description: 'Privileged verification queue, ground-truth auditing, and source trust management for disaster management operators.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +26,7 @@ export default async function AdminPage() {
         <AdminConsoleView />
       </main>
       <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 bg-surface">
-        MeghSetu · Privileged Disaster Management Verification Console · Government of India
+        MeghSetu · Operational Disaster Management Verification Console
       </footer>
     </div>
   );

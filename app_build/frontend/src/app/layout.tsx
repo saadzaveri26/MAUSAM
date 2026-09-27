@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'MeghSetu — National Weather Big Data Analytics Platform',
-  description: 'Ministry of Earth Sciences — India Meteorological Department | National Weather Big Data Analytics Platform',
+  description: 'National Weather Big Data Analytics Platform | Real-Time Weather Intelligence & Incident Analytics',
 };
 
 export default function RootLayout({

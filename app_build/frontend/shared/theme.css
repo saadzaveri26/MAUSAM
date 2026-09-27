@@ -3,7 +3,7 @@
 
   Palette drawn from the subject itself: monsoon-night navy as the working
   background (this is an operations console, not a marketing surface),
-  a signal-amber for attention/alerts (matches IMD warning-color language),
+  a signal-amber for attention/alerts (matches standard warning-color language),
   a verified-teal for confirmed data, and an alert-red reserved only for
   rejected/danger states so it stays meaningful.
 */

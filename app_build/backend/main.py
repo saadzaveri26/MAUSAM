@@ -20,7 +20,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="National Weather Big Data Analytics Platform",
-    description="SIH 2026 — PS 26069 | Ministry of Earth Sciences / IMD prototype API",
+    description="SIH 2026 — PS 26069 | National Weather Big Data Analytics Prototype API",
     version="0.1.0",
 )
 

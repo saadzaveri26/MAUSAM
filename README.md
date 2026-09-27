@@ -1,6 +1,6 @@
 # MeghSetu — National Weather Big Data Analytics Platform
 
-**SIH 2026 · Problem Statement 26069 · Ministry of Earth Sciences (MoES) — India Meteorological Department**
+**SIH 2026 · Problem Statement 26069 · National Weather Big Data Analytics Platform**
 Category: Software · Theme: Disaster Management
 
 A working prototype of a platform that ingests weather-related reports from

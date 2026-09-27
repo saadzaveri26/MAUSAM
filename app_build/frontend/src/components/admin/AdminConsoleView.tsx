@@ -279,7 +279,7 @@ export default function AdminConsoleView() {
             </div>
             <div>
               <h1 className="font-display font-bold text-base text-ink-0 leading-tight">
-                IMD Operational Verification Console
+                Operational Verification Console
               </h1>
               <span className="text-[11px] text-ink-2">
                 ACTIVE OPERATOR SESSION · PRIVILEGED AUDIT QUEUE

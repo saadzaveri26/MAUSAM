@@ -16,7 +16,7 @@ import LandingHeader from '@/components/shared/LandingHeader';
 export const metadata: Metadata = {
   title: 'MeghSetu — National Weather Big Data Analytics Platform',
   description:
-    'National Weather Big Data Analytics Platform · Ministry of Earth Sciences (MoES) — India Meteorological Department. Multi-source weather intelligence, operational incident classification, and GIS situational awareness.',
+    'National Weather Big Data Analytics Platform. Multi-source weather intelligence, operational incident classification, and GIS situational awareness.',
 };
 
 export default function LandingPage() {
@@ -48,7 +48,7 @@ export default function LandingPage() {
                 </div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line text-xs font-sans text-ink-1 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-                  <span>MoES — India Meteorological Department</span>
+                  <span>Open Weather Intelligence & Ground-Truth Network</span>
                 </div>
               </div>
 
@@ -59,7 +59,7 @@ export default function LandingPage() {
 
               {/* Subtext: Strictly under 20 words per tasteskill rule */}
               <p className="text-base sm:text-lg text-ink-1 leading-relaxed font-sans max-w-[58ch]">
-                Citizen reports, social posts tagged #IMD, and meteorological feeds—ML-classified, verified for credibility, and mapped in real time.
+                Citizen reports, verified local dispatches, and meteorological feeds—ML-classified, verified for credibility, and mapped in real time.
               </p>
 
               {/* CTAs: 1 primary + max 1 secondary, no wrapping at desktop */}
@@ -99,10 +99,10 @@ export default function LandingPage() {
                   </span>
                 </div>
 
-                {/* IMD 4-Tier Severity Distribution */}
+                {/* 4-Tier Severity Distribution */}
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-[11px] text-ink-2 font-medium">
-                    <span>IMD 4-TIER ALERT SEVERITY MATRIX</span>
+                    <span>4-TIER WEATHER ALERT SEVERITY MATRIX</span>
                     <span className="text-ink-1">248 Active Reports</span>
                   </div>
                   <div className="grid grid-cols-4 gap-2 pt-0.5">
@@ -177,15 +177,15 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Institutional Accreditation & Telemetry Band (Directly below hero, not inside it) */}
+        {/* Platform Standards & Telemetry Band */}
         <section className="bg-surface border-b border-line py-5 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs">
             <div className="flex items-center gap-3 text-ink-2">
-              <span className="text-ink-0 font-semibold uppercase tracking-wider">Accreditation</span>
+              <span className="text-ink-0 font-semibold uppercase tracking-wider">Platform Standards</span>
               <span>·</span>
-              <span className="text-ink-1">Ministry of Earth Sciences</span>
+              <span className="text-ink-1">National Weather Big Data Analytics</span>
               <span>·</span>
-              <span className="text-ink-1">India Meteorological Department</span>
+              <span className="text-ink-1">Open Meteorological Standards</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-5 text-ink-2">
@@ -202,7 +202,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-amber" />
                 <span className="text-ink-1 font-semibold">4-Tier</span>
-                <span>IMD Alert Matrix</span>
+                <span>Weather Alert Matrix</span>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function LandingPage() {
                     Multi-Channel Ingestion
                   </h3>
                   <p className="text-xs text-ink-1 leading-relaxed">
-                    Stream ingestion pulls citizen mobile reports, public APIs, and social feeds tagged #IMD into a normalized operational queue.
+                    Stream ingestion pulls citizen mobile reports, public APIs, and social feeds into a normalized operational queue.
                   </p>
                 </div>
                 <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
@@ -293,7 +293,7 @@ export default function LandingPage() {
                     Spatial GIS Dispatches
                   </h3>
                   <p className="text-xs text-ink-1 leading-relaxed">
-                    Verified incidents plot onto interactive GIS maps with IMD 4-tier alert colors, updating operational monitors every 20 seconds.
+                    Verified incidents plot onto interactive GIS maps with standard 4-tier alert colors, updating operational monitors every 20 seconds.
                   </p>
                 </div>
                 <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
@@ -323,7 +323,7 @@ export default function LandingPage() {
                   Live Geospatial Monitoring
                 </h3>
                 <p className="text-xs text-ink-1 leading-relaxed">
-                  Interactive geospatial situational map. Incident clusters categorized by IMD 4-tier alert severity with geocoded field metadata.
+                  Interactive geospatial situational map. Incident clusters categorized by standard 4-tier alert severity with geocoded field metadata.
                 </p>
                 <div className="pt-2 mt-auto text-[11px] text-brand-primary">
                   <Link href="/dashboard" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
@@ -341,7 +341,7 @@ export default function LandingPage() {
                   Human-in-the-Loop Triage
                 </h3>
                 <p className="text-xs text-ink-1 leading-relaxed">
-                  Dense table-first queue for meteorologists. One-click verify and reject actions that dynamically update source trust ratings and blacklist abusive accounts.
+                  Dense table-first queue for weather analysts. One-click verify and reject actions that dynamically update source trust ratings and blacklist abusive accounts.
                 </p>
                 <div className="pt-2 mt-auto text-[11px] text-brand-primary">
                   <Link href="/admin" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
@@ -393,7 +393,7 @@ export default function LandingPage() {
               </div>
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
                 <span className="text-ink-2 text-[10px] block mb-1 uppercase font-medium">Alert Indexing</span>
-                <span className="text-ink-0 font-semibold block">4-Tier IMD Scale</span>
+                <span className="text-ink-0 font-semibold block">Standard 4-Tier Scale</span>
                 <span className="text-ink-2 text-[11px]">Green · Yellow · Orange · Red</span>
               </div>
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
@@ -414,7 +414,7 @@ export default function LandingPage() {
               MeghSetu · National Weather Big Data Analytics Platform
             </div>
             <p className="text-[11px] text-ink-2">
-              Ministry of Earth Sciences (MoES) — India Meteorological Department
+              National Weather Big Data Analytics & Incident Monitoring System
             </p>
           </div>
 
@@ -432,7 +432,7 @@ export default function LandingPage() {
         </div>
 
         <div className="max-w-6xl mx-auto pt-5 mt-5 border-t border-line-soft text-center text-[10px] text-ink-2">
-          Official Weather Intelligence Portal · Ministry of Earth Sciences, Government of India. All rights reserved.
+          MeghSetu Weather Intelligence & Incident Analytics Platform. All rights reserved.
         </div>
       </footer>
     </div>
