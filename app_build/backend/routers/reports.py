@@ -8,6 +8,7 @@ from database import get_db
 from models import WeatherReport, VerificationStatus, AuditLog
 from schemas import CitizenReportIn, VerificationUpdateIn
 from pipeline import process_and_store
+from auth import require_admin
 
 router = APIRouter(prefix="/api/reports", tags=["reports"])
 
@@ -80,7 +81,7 @@ def submit_citizen_report(payload: CitizenReportIn, db: Session = Depends(get_db
     return report.to_dict()
 
 
-@router.patch("/{report_id}/verify")
+@router.patch("/{report_id}/verify", dependencies=[Depends(require_admin)])
 def update_verification(report_id: int, payload: VerificationUpdateIn, db: Session = Depends(get_db)):
     report = db.query(WeatherReport).get(report_id)
     if not report:

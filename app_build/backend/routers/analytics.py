@@ -5,6 +5,7 @@ from sqlalchemy import func
 
 from database import get_db
 from models import WeatherReport, Source, VerificationStatus
+from auth import require_admin
 
 router = APIRouter(prefix="/api/analytics", tags=["analytics"])
 
@@ -129,3 +130,18 @@ def sources(db: Session = Depends(get_db)):
         }
         for s in rows
     ]
+
+
+@router.post("/sources/{source_id}/toggle-blacklist", dependencies=[Depends(require_admin)])
+def toggle_source_blacklist(source_id: int, db: Session = Depends(get_db)):
+    source = db.query(Source).get(source_id)
+    if not source:
+        raise HTTPException(404, "Source not found")
+    source.is_blacklisted = not bool(source.is_blacklisted)
+    db.commit()
+    db.refresh(source)
+    return {
+        "id": source.id,
+        "handle": source.handle,
+        "is_blacklisted": source.is_blacklisted
+    }

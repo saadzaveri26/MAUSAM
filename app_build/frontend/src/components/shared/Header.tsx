@@ -1,0 +1,64 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { BarChart3, FileSpreadsheet, ShieldCheck } from 'lucide-react';
+
+export default function Header() {
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: '/dashboard', label: 'Analytics Dashboard', icon: BarChart3 },
+    { href: '/report', label: 'Submit Weather Report', icon: FileSpreadsheet },
+    { href: '/admin', label: 'Admin Verification', icon: ShieldCheck },
+  ];
+
+  return (
+    <header className="bg-navy-900 border-b border-line sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-md bg-white border border-line flex items-center justify-center p-1 group-hover:border-accent transition-colors shadow-sm overflow-hidden">
+            <Image
+              src="/brand/meghsetu-emblem.png"
+              alt="MeghSetu Emblem"
+              width={26}
+              height={26}
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <span className="font-display font-bold text-sm tracking-tight text-ink-0 block leading-none">
+              MeghSetu
+            </span>
+            <span className="text-[10px] text-ink-2 font-mono block mt-0.5">
+              MoES · India Meteorological Department
+            </span>
+          </div>
+        </Link>
+
+        <nav className="flex items-center gap-1 sm:gap-2">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-navy-800 text-accent border border-accent/40 shadow-sm'
+                    : 'text-ink-1 hover:text-ink-0 hover:bg-navy-800/60'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+    </header>
+  );
+}

@@ -55,10 +55,17 @@ see `production_artifacts/docs/DATA_FLOW.md`.
 | Backend API | **FastAPI** (Python 3.11), Uvicorn |
 | Database / ORM | **SQLAlchemy** over **SQLite** (prototype) — schema designed for a drop-in swap to PostgreSQL/TimescaleDB |
 | ML / AI | **scikit-learn** (TF-IDF, Multinomial Naive Bayes, cosine similarity), hand-tuned lexicons for Indian weather vocabulary |
-| Frontend | Vanilla HTML/CSS/JS (no build step) |
+| Frontend | **Next.js** (App Router, TypeScript) + **Tailwind CSS** (UX4G 3.0 Token Translation) |
+| Design System | **UX4G Design System 3.0** (Government of India, MIT License) — Token Hybrid |
 | Data viz | **Chart.js** (analytics charts), **Leaflet.js** (live map, CARTO dark tiles) |
-| Landing page | Static HTML/CSS/JS |
+| Landing page | Next.js Landing Page / Static HTML fallback |
 | Deployment | Docker, Docker Compose, Nginx (see `production_artifacts/deployment/`) |
+
+---
+
+## Attribution & Design System
+
+This product uses components and design tokens from the **UX4G Design System 3.0**, developed by the Government of India, released under the [MIT License](https://ux4g.gov.in). Use of the UX4G Design System does not imply official endorsement, approval, or affiliation with the Government of India.
 
 ---
 
