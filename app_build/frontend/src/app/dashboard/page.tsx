@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col">
+    <div className="min-h-screen bg-bg flex flex-col text-text font-sans">
       <Header />
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <AnalyticsDashboardView />
       </main>
-      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 font-mono">
+      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 font-mono bg-surface">
         MeghSetu · National Weather Big Data Analytics Platform · India Meteorological Department (MoES)
       </footer>
     </div>

@@ -12,7 +12,7 @@ import { AlertTriangle } from 'lucide-react';
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[520px] bg-navy-950 border border-line rounded-lg flex items-center justify-center">
+    <div className="w-full h-[520px] bg-surface-alt border border-line rounded-lg flex items-center justify-center">
       <span className="text-xs font-mono text-ink-2 animate-pulse">
         Initializing Spatial Telemetry Map…
       </span>
@@ -95,7 +95,7 @@ export default function AnalyticsDashboardView() {
           </div>
           <button
             onClick={fetchAllAnalytics}
-            className="px-2.5 py-1 rounded bg-navy-800 text-ink-0 hover:bg-slate-700 font-mono text-[11px]"
+            className="px-2.5 py-1 rounded bg-surface border border-line text-ink-0 hover:bg-surface-alt font-mono text-[11px]"
           >
             Retry Connection
           </button>

@@ -37,7 +37,7 @@ export default function TimeseriesChart({ data }: TimeseriesChartProps) {
     : '';
 
   return (
-    <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-4">
+    <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 space-y-4">
       <div className="flex items-center justify-between border-b border-line-soft pb-3">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-amber" />
@@ -66,9 +66,9 @@ export default function TimeseriesChart({ data }: TimeseriesChartProps) {
             </defs>
 
             {/* Horizontal Grid lines */}
-            <line x1="0" y1="20" x2={chartWidth} y2="20" stroke="rgba(233, 241, 245, 0.05)" strokeDasharray="3 3" />
-            <line x1="0" y1="60" x2={chartWidth} y2="60" stroke="rgba(233, 241, 245, 0.05)" strokeDasharray="3 3" />
-            <line x1="0" y1="100" x2={chartWidth} y2="100" stroke="rgba(233, 241, 245, 0.05)" strokeDasharray="3 3" />
+            <line x1="0" y1="20" x2={chartWidth} y2="20" stroke="rgba(46, 36, 32, 0.08)" strokeDasharray="3 3" />
+            <line x1="0" y1="60" x2={chartWidth} y2="60" stroke="rgba(46, 36, 32, 0.08)" strokeDasharray="3 3" />
+            <line x1="0" y1="100" x2={chartWidth} y2="100" stroke="rgba(46, 36, 32, 0.08)" strokeDasharray="3 3" />
 
             {/* Area fill */}
             {areaD && <path d={areaD} fill="url(#trendGradient)" />}
@@ -83,7 +83,7 @@ export default function TimeseriesChart({ data }: TimeseriesChartProps) {
                 cx={p.x}
                 cy={p.y}
                 r="3"
-                className="fill-navy-950 stroke-amber stroke-2 hover:r-4 transition-all"
+                className="fill-white stroke-amber stroke-2 hover:r-4 transition-all"
               >
                 <title>{`${p.date}: ${p.count} reports`}</title>
               </circle>

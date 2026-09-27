@@ -65,9 +65,9 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
 
       L.control.zoom({ position: 'topright' }).addTo(map);
 
-      // Dark GIS tile layer matching MeghSetu monsoon navy palette (No API key required)
+      // Clean GIS tile layer matching light theme
       L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+        'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
         {
           attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
           maxZoom: 16,
@@ -76,7 +76,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
 
       // Boundary and label reference overlay
       L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+        'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
         {
           attribution: '',
           maxZoom: 16,
@@ -158,15 +158,15 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
   }
 
   return (
-    <div className="bg-navy-900 border border-line rounded-lg shadow-l2 overflow-hidden flex flex-col">
+    <div className="bg-surface border border-line rounded-lg shadow-l2 overflow-hidden flex flex-col">
       {/* Top Map Controls Bar */}
-      <div className="p-3.5 border-b border-line bg-navy-900/90 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="p-3.5 border-b border-line bg-surface flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-amber" />
+          <Layers className="w-4 h-4 text-brand-primary" />
           <span className="font-display font-semibold text-ink-0 text-sm">
             Live Spatial Incident Feed
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-navy-800 text-ink-1 font-mono text-[11px] border border-line">
+          <span className="px-2 py-0.5 rounded-full bg-white text-ink-1 font-mono text-[11px] border border-line shadow-xs">
             {filteredPoints.length} Geocoded Points
           </span>
         </div>
@@ -176,14 +176,14 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
           <span className="text-[11px] font-mono text-ink-2 mr-1">Severity:</span>
           {['ALL', 'Severe', 'High', 'Moderate', 'Low'].map((sev) => {
             const isActive = selectedSeverity === sev;
-            const color = sev === 'ALL' ? '#b9c9d3' : SEVERITY_COLORS[sev];
+            const color = sev === 'ALL' ? '#6E5D57' : SEVERITY_COLORS[sev];
             return (
               <button
                 key={sev}
                 onClick={() => setSelectedSeverity(sev)}
                 className={`px-2 py-1 rounded text-[11px] font-mono transition-all border ${
                   isActive
-                    ? 'bg-navy-800 text-ink-0 border-line shadow-l1 font-semibold'
+                    ? 'bg-white text-ink-0 border-line shadow-l1 font-semibold'
                     : 'bg-transparent text-ink-2 border-transparent hover:text-ink-1'
                 }`}
                 style={{ borderLeftColor: isActive && sev !== 'ALL' ? color : undefined, borderLeftWidth: isActive && sev !== 'ALL' ? '3px' : undefined }}
@@ -197,7 +197,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="ml-2 bg-navy-800 border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none"
+            className="ml-2 bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none shadow-xs"
           >
             <option value="ALL">All Categories</option>
             {categories.map((c) => (
@@ -209,7 +209,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
 
           <button
             onClick={handleResetView}
-            className="ml-1 p-1 rounded bg-navy-800 hover:bg-slate-700 text-ink-2 hover:text-ink-0 border border-line"
+            className="ml-1 p-1 rounded bg-white hover:bg-surface-alt text-ink-2 hover:text-ink-0 border border-line shadow-xs"
             title="Reset to India view"
           >
             <Maximize2 className="w-3.5 h-3.5" />
@@ -218,29 +218,29 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
       </div>
 
       {/* Map Viewport: dominant visual surface (min-height 520px) */}
-      <div className="relative w-full h-[520px] sm:h-[580px] bg-navy-950">
+      <div className="relative w-full h-[520px] sm:h-[580px] bg-surface-alt">
         <div ref={mapContainerRef} className="w-full h-full" />
 
         {/* Operational Severity Legend */}
-        <div className="absolute bottom-4 left-4 z-[400] bg-navy-900/90 border border-line rounded-md p-3 shadow-l3 text-xs space-y-2 pointer-events-auto backdrop-blur-none">
-          <span className="font-mono text-[10px] text-ink-2 uppercase tracking-wider block">
+        <div className="absolute bottom-4 left-4 z-[400] bg-surface/95 border border-line rounded-md p-3 shadow-l3 text-xs space-y-2 pointer-events-auto backdrop-blur-none">
+          <span className="font-mono text-[10px] text-ink-2 uppercase tracking-wider block font-semibold">
             IMD Alert Severity
           </span>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 font-mono text-[11px]">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red border border-white/40"></span>
+              <span className="w-3 h-3 rounded-full bg-red border border-red/40"></span>
               <span className="text-ink-1">Severe / Warning</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-orange-500 border border-white/40"></span>
+              <span className="w-3 h-3 rounded-full bg-orange-500 border border-orange-500/40"></span>
               <span className="text-ink-1">High / Alert</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-amber border border-white/40"></span>
+              <span className="w-3 h-3 rounded-full bg-amber border border-amber/40"></span>
               <span className="text-ink-1">Moderate / Watch</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-teal border border-white/40"></span>
+              <span className="w-3 h-3 rounded-full bg-teal border border-teal/40"></span>
               <span className="text-ink-1">Low / Normal</span>
             </div>
           </div>

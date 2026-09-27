@@ -27,23 +27,71 @@ const config: Config = {
       boxShadow: {
         none: 'none',
         l0: 'none',
-        l1: '0px 1px 2px 0px rgba(6,17,31,0.10), 0px 1px 2px 0px rgba(6,17,31,0.08)',
-        l2: '0px 4px 8px 0px rgba(6,17,31,0.14), 0px 1px 2px 0px rgba(6,17,31,0.08)',
-        l3: '0px 8px 16px 0px rgba(6,17,31,0.18), 0px 4px 8px 0px rgba(6,17,31,0.12)',
-        l4: '0px 16px 32px 0px rgba(6,17,31,0.22), 0px 8px 16px 0px rgba(6,17,31,0.16)',
-        card: '0px 1px 2px 0px rgba(6,17,31,0.10), 0px 1px 2px 0px rgba(6,17,31,0.08)',
-        dropdown: '0px 4px 8px 0px rgba(6,17,31,0.14), 0px 1px 2px 0px rgba(6,17,31,0.08)',
-        popover: '0px 8px 16px 0px rgba(6,17,31,0.18), 0px 4px 8px 0px rgba(6,17,31,0.12)',
-        modal: '0px 16px 32px 0px rgba(6,17,31,0.22), 0px 8px 16px 0px rgba(6,17,31,0.16)',
+        l1: '0px 1px 3px 0px rgba(46, 36, 32, 0.06), 0px 1px 2px 0px rgba(46, 36, 32, 0.04)',
+        l2: '0px 4px 8px -1px rgba(46, 36, 32, 0.08), 0px 2px 4px -1px rgba(46, 36, 32, 0.04)',
+        l3: '0px 10px 16px -3px rgba(46, 36, 32, 0.10), 0px 4px 6px -2px rgba(46, 36, 32, 0.05)',
+        l4: '0px 20px 25px -5px rgba(46, 36, 32, 0.12), 0px 10px 10px -5px rgba(46, 36, 32, 0.04)',
+        card: '0px 1px 3px 0px rgba(46, 36, 32, 0.06), 0px 1px 2px 0px rgba(46, 36, 32, 0.04)',
+        dropdown: '0px 4px 8px -1px rgba(46, 36, 32, 0.08), 0px 2px 4px -1px rgba(46, 36, 32, 0.04)',
+        popover: '0px 10px 16px -3px rgba(46, 36, 32, 0.10), 0px 4px 6px -2px rgba(46, 36, 32, 0.05)',
+        modal: '0px 20px 25px -5px rgba(46, 36, 32, 0.12), 0px 10px 10px -5px rgba(46, 36, 32, 0.04)',
       },
       colors: {
         /*
-         * MeghSetu Redesign — Option A: Deep Navy Monochrome + Single Electric Accent
-         * taste-skill rule: "Pick one accent. Remove the rest."
-         * Single accent: #0CAAEF (electric cyan-blue)
+         * MeghSetu Light Theme & Coral Pink / Sunset Orange Brand Architecture
+         * --bg: #FFFFFF (pure white)
+         * --surface: #FFF7F2 (warm tinted card/panels)
+         * --text: #2E2420 (warm charcoal)
+         * --brand-primary: #EC6F8E (coral pink, dominant)
+         * --brand-secondary: #F2703A (sunset orange, accent/hover)
+         * --brand-accent: #A83250 (deep wine)
          */
 
-        // Canvas scale (darkened for depth)
+        // Light Theme Canvas & Surfaces
+        bg: '#FFFFFF',
+        surface: {
+          DEFAULT: '#FFF7F2',
+          alt: '#F7EBE3',
+          card: '#FFF7F2',
+        },
+        'surface-alt': '#F7EBE3',
+
+        // Primary Text Scale (Warm Charcoal)
+        text: {
+          DEFAULT: '#2E2420',
+          primary: '#2E2420',
+          muted: '#6E5D57',
+          subtle: '#94827B',
+        },
+
+        // Dominant Brand: Coral Pink (#EC6F8E) & Sunset Orange (#F2703A)
+        'brand-primary': '#EC6F8E',
+        'brand-secondary': '#F2703A',
+        'brand-accent': '#A83250',
+        brand: {
+          DEFAULT: '#EC6F8E',
+          primary: '#EC6F8E',
+          secondary: '#F2703A',
+          accent: '#A83250',
+          hover: '#F2703A',
+          light: '#F8B4C4',
+          dim: 'rgba(236, 111, 142, 0.12)',
+          muted: 'rgba(236, 111, 142, 0.06)',
+        },
+        'brand-light': '#F8B4C4',
+
+        // Accent tokens mapped to brand for backward-compatible utility classes
+        accent: {
+          DEFAULT: '#EC6F8E',
+          hover: '#F2703A',
+          dim: 'rgba(236, 111, 142, 0.12)',
+          muted: 'rgba(236, 111, 142, 0.06)',
+        },
+
+        // Optional secondary chart series (strictly for charts, never for buttons/nav)
+        'accent-teal': '#2C8C7D',
+
+        // Institutional Navy (retained for solid dark Header and institutional elements)
         navy: {
           DEFAULT: '#0B2A61',
           950: '#06111F',
@@ -52,46 +100,22 @@ const config: Config = {
           700: '#1c488a',
         },
 
-        // THE one accent — all interactive elements
-        accent: {
-          DEFAULT: '#0CAAEF',
-          hover: '#3BBEF3',
-          dim: 'rgba(12, 170, 239, 0.12)',
-          muted: 'rgba(12, 170, 239, 0.06)',
-        },
-        'accent-blue': '#0CAAEF',
-
-        // Wordmark-only (demoted from UI-wide accent)
-        'brand-blue': '#0169DE',
-        brand: {
-          blue: '#0169DE',
-          DEFAULT: '#0169DE',
-        },
-
-        // Surfaces
-        surface: {
-          alt: '#0E3366',
-          DEFAULT: '#0E3366',
-        },
-        'surface-alt': '#0E3366',
-        'bg-tint': '#06111F',
-
         slate: {
           700: '#1c488a',
           600: '#2b5f9e',
         },
 
-        // Text hierarchy
+        // Text hierarchy mapped to warm charcoal for existing ink-* classes
         ink: {
-          0: '#E8F0F5',
-          1: '#8FA8B8',
-          2: '#5A7283',
+          0: '#2E2420',
+          1: '#6E5D57',
+          2: '#94827B',
         },
 
-        // Borders — accent-tinted
+        // Hairline borders
         line: {
-          DEFAULT: 'rgba(12, 170, 239, 0.10)',
-          soft: 'rgba(12, 170, 239, 0.05)',
+          DEFAULT: 'rgba(46, 36, 32, 0.12)',
+          soft: 'rgba(46, 36, 32, 0.06)',
         },
 
         // Severity & operational alert palette (STRICTLY UNTOUCHED)
@@ -106,10 +130,6 @@ const config: Config = {
         red: {
           DEFAULT: '#e5484d',
           dim: 'rgba(229, 72, 77, 0.16)',
-        },
-        blue: {
-          DEFAULT: '#0CAAEF',
-          dim: 'rgba(12, 170, 239, 0.16)',
         },
         severity: {
           low: '#2bb3a3',

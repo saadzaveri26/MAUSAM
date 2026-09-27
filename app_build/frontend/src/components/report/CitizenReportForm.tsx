@@ -249,7 +249,7 @@ export default function CitizenReportForm() {
     return (
       <div className="w-full max-w-xl mx-auto space-y-6">
         {/* Success Header */}
-        <div className="bg-navy-900 border border-teal/40 rounded-lg p-6 shadow-l2">
+        <div className="bg-surface border border-teal/40 rounded-lg p-6 shadow-l2">
           <div className="flex items-center justify-between gap-4 mb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-md bg-teal-dim text-teal flex items-center justify-center shrink-0">
@@ -277,7 +277,7 @@ export default function CitizenReportForm() {
         </div>
 
         {/* Plain Language Analysis Cards */}
-        <div className="bg-navy-900 border border-line rounded-lg p-6 shadow-l1 space-y-5">
+        <div className="bg-surface border border-line rounded-lg p-6 shadow-l1 space-y-5">
           <h3 className="font-display font-medium text-sm text-ink-0 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-amber" />
             <span>Automated Meteorological Analysis</span>
@@ -285,7 +285,7 @@ export default function CitizenReportForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Event Category */}
-            <div className="p-3.5 bg-navy-800 border border-line rounded-md">
+            <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
               <span className="text-[11px] font-mono text-ink-2 block mb-1">
                 CLASSIFIED EVENT
               </span>
@@ -303,7 +303,7 @@ export default function CitizenReportForm() {
             </div>
 
             {/* Assessed Severity */}
-            <div className="p-3.5 bg-navy-800 border border-line rounded-md">
+            <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
               <span className="text-[11px] font-mono text-ink-2 block mb-1">
                 OPERATIONAL SEVERITY
               </span>
@@ -321,7 +321,7 @@ export default function CitizenReportForm() {
             </div>
 
             {/* Credibility Score */}
-            <div className="p-3.5 bg-navy-800 border border-line rounded-md">
+            <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
               <span className="text-[11px] font-mono text-ink-2 block mb-1">
                 CREDIBILITY RATING
               </span>
@@ -339,7 +339,7 @@ export default function CitizenReportForm() {
             </div>
 
             {/* Duplicate Filter */}
-            <div className="p-3.5 bg-navy-800 border border-line rounded-md">
+            <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
               <span className="text-[11px] font-mono text-ink-2 block mb-1">
                 DEDUPLICATION STATUS
               </span>
@@ -360,7 +360,7 @@ export default function CitizenReportForm() {
           </div>
 
           {/* Submission Details */}
-          <div className="p-3 bg-navy-800/60 border border-line rounded-md text-xs text-ink-1 space-y-1">
+          <div className="p-3 bg-surface-alt border border-line rounded-md text-xs text-ink-1 space-y-1">
             <div className="flex justify-between font-mono text-[11px]">
               <span className="text-ink-2">Location:</span>
               <span className="text-ink-0">{mlResult.city}, {mlResult.state} {mlResult.latitude ? `(${mlResult.latitude}°N, ${mlResult.longitude}°E)` : ''}</span>
@@ -378,7 +378,7 @@ export default function CitizenReportForm() {
           {/* Action to submit another */}
           <button
             onClick={resetForm}
-            className="w-full bg-accent/10 hover:bg-accent/20 text-accent border border-accent/30 font-medium text-xs py-2.5 px-4 rounded-md flex items-center justify-center gap-2 transition-colors"
+            className="w-full bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-medium text-xs py-2.5 px-4 rounded-md flex items-center justify-center gap-2 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Submit Another Observation</span>
@@ -391,7 +391,7 @@ export default function CitizenReportForm() {
   return (
     <div className="w-full max-w-xl mx-auto space-y-6">
       {/* Intro banner — no eyebrow (tasteskill: max 1 eyebrow per 3 sections) */}
-      <div className="bg-navy-900 border border-accent/20 rounded-lg p-5 shadow-l1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="bg-surface border border-brand-primary/20 rounded-lg p-5 shadow-l1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-display font-semibold text-lg text-ink-0">
             Citizen Weather Incident Report
@@ -401,9 +401,9 @@ export default function CitizenReportForm() {
             in real-time by ML models for credibility scoring and duplicate detection.
           </p>
         </div>
-        <div className="px-3.5 py-2.5 rounded-md bg-accent/10 border border-accent/30 text-xs font-mono shrink-0 self-start sm:self-center space-y-1">
-          <div className="flex items-center gap-1.5 text-accent font-medium">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+        <div className="px-3.5 py-2.5 rounded-md bg-brand-primary/10 border border-brand-primary/30 text-xs font-mono shrink-0 self-start sm:self-center space-y-1">
+          <div className="flex items-center gap-1.5 text-brand-primary font-medium">
+            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
             <span>Live Intake Channel</span>
           </div>
           <span className="block text-[11px] text-ink-2">MoES · IMD Ground Truth</span>
@@ -418,11 +418,11 @@ export default function CitizenReportForm() {
       )}
 
       {/* Main Single Column Form */}
-      <form onSubmit={handleSubmit} className="bg-navy-900 border border-line rounded-lg p-5 sm:p-6 shadow-l2 space-y-5">
+      <form onSubmit={handleSubmit} className="bg-surface border border-line rounded-lg p-5 sm:p-6 shadow-l2 space-y-5">
         {/* Category selector — visual icon grid instead of plain dropdown */}
         <div>
           <label className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-3">
-            Incident Category <span className="text-accent">*</span>
+            Incident Category <span className="text-brand-primary">*</span>
           </label>
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
             {EVENT_CATEGORIES.map((cat) => {
@@ -435,8 +435,8 @@ export default function CitizenReportForm() {
                   onClick={() => setCategory(cat.label)}
                   className={`flex flex-col items-center gap-1.5 p-3 rounded-md border text-xs font-medium transition-all ${
                     isSelected
-                      ? 'bg-accent/15 border-accent text-accent shadow-sm'
-                      : 'bg-navy-800 border-line text-ink-1 hover:border-accent/40 hover:text-ink-0'
+                      ? 'bg-brand-primary/15 border-brand-primary text-brand-primary shadow-sm'
+                      : 'bg-white border-line text-ink-1 hover:border-brand-primary/40 hover:text-ink-0'
                   }`}
                 >
                   <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -450,7 +450,7 @@ export default function CitizenReportForm() {
         {/* Observation Text */}
         <div>
           <label htmlFor="report-text" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
-            Observation Details <span className="text-accent">*</span>
+            Observation Details <span className="text-brand-primary">*</span>
           </label>
           <textarea
             id="report-text"
@@ -458,7 +458,7 @@ export default function CitizenReportForm() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Describe what you see: rainfall intensity, flooded roads/landmarks, water depth, fallen trees, wind strength, etc."
-            className="w-full bg-navy-800 border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors leading-relaxed"
+            className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors leading-relaxed shadow-xs"
             required
           />
           <span className="block text-[11px] text-ink-2 mt-1">
@@ -467,10 +467,10 @@ export default function CitizenReportForm() {
         </div>
 
         {/* GPS Capture with Explicit Visible Confirmation */}
-        <div className="p-3.5 bg-navy-800/80 border border-line rounded-md space-y-3">
+        <div className="p-3.5 bg-surface-alt border border-line rounded-md space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-ink-1 uppercase tracking-wider flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-accent" />
+              <MapPin className="w-3.5 h-3.5 text-brand-primary" />
               <span>GPS Geolocation</span>
             </span>
 
@@ -494,7 +494,7 @@ export default function CitizenReportForm() {
               <button
                 type="button"
                 onClick={handleCaptureGps}
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md bg-accent/10 border border-accent/30 hover:bg-accent/20 text-xs text-accent transition-colors shrink-0"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md bg-brand-primary/10 border border-brand-primary/30 hover:bg-brand-primary/20 text-xs text-brand-primary transition-colors shrink-0"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Auto-Capture Device GPS</span>
@@ -503,8 +503,8 @@ export default function CitizenReportForm() {
           )}
 
           {gps.status === 'locating' && (
-            <div className="flex items-center gap-2.5 text-xs text-accent animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-accent" />
+            <div className="flex items-center gap-2.5 text-xs text-brand-primary animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-brand-primary" />
               <span>Querying device GPS satellites and network towers…</span>
             </div>
           )}
@@ -538,13 +538,13 @@ export default function CitizenReportForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="report-state" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
-              State / UT <span className="text-accent">*</span>
+              State / UT <span className="text-brand-primary">*</span>
             </label>
             <select
               id="report-state"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              className="w-full bg-navy-800 border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors"
+              className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors shadow-xs"
             >
               {INDIAN_STATES.map((s) => (
                 <option key={s} value={s}>
@@ -556,7 +556,7 @@ export default function CitizenReportForm() {
 
           <div>
             <label htmlFor="report-city" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
-              City / District <span className="text-accent">*</span>
+              City / District <span className="text-brand-primary">*</span>
             </label>
             <input
               id="report-city"
@@ -564,7 +564,7 @@ export default function CitizenReportForm() {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               placeholder="e.g. Mumbai, Chennai, Patna"
-              className="w-full bg-navy-800 border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors"
+              className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors shadow-xs"
               required
             />
           </div>
@@ -581,18 +581,18 @@ export default function CitizenReportForm() {
             value={reporterHandle}
             onChange={(e) => setReporterHandle(e.target.value)}
             placeholder="citizen_field_reporter"
-            className="w-full bg-navy-800 border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors font-mono"
+            className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors font-mono shadow-xs"
           />
           <span className="block text-[11px] text-ink-2 mt-1">
             Builds source credibility history. Retains anonymity if desired.
           </span>
         </div>
 
-        {/* Submit button — accent emphasis with hover/active transitions */}
+        {/* Submit button — coral pink primary with sunset orange hover */}
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-accent hover:bg-accent-hover text-navy-950 font-semibold text-sm py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
+          className="w-full bg-brand-primary hover:bg-brand-secondary text-navy-950 font-semibold text-sm py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
         >
           {submitting ? (
             <span className="inline-block animate-pulse font-mono text-xs">

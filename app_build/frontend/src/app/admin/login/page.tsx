@@ -49,9 +49,9 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-4 text-text font-sans">
       {/* Container with UX4G tokens: rounded-lg (12px), shadow-l2, line border */}
-      <div className="w-full max-w-md bg-navy-900 border border-line rounded-lg shadow-l2 p-6 sm:p-8">
+      <div className="w-full max-w-md bg-surface border border-line rounded-lg shadow-l2 p-6 sm:p-8">
         {/* Header with operational authority badge */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 rounded-md bg-amber-dim border border-amber/30 flex items-center justify-center text-amber">
@@ -101,14 +101,14 @@ function LoginForm() {
               placeholder="••••••••••••••••••••••••"
               disabled={loading || success}
               autoFocus
-              className="w-full bg-navy-800 border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors font-mono"
+              className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors font-mono shadow-xs"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading || success}
-            className="w-full bg-accent hover:bg-accent-hover active:scale-[0.98] text-navy-950 font-semibold text-sm py-2.5 px-4 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
+            className="w-full bg-brand-primary hover:bg-brand-secondary active:scale-[0.98] text-navy-950 font-semibold text-sm py-2.5 px-4 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
           >
             {loading ? (
               <span className="inline-block animate-pulse font-mono text-xs">Authenticating…</span>
@@ -134,8 +134,8 @@ export default function AdminLoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-navy-950 flex items-center justify-center p-4">
-          <div className="w-full max-w-md bg-navy-900 border border-line rounded-lg p-8 text-center">
+        <div className="min-h-screen bg-bg flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-surface border border-line rounded-lg p-8 text-center">
             <span className="text-xs text-ink-2 font-mono">Loading authentication gate…</span>
           </div>
         </div>

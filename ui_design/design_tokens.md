@@ -41,26 +41,24 @@ Shadows are tinted to the finalized brand navy background hue (`rgba(11, 42, 97,
 
 ---
 
-## 4. Color System (Brand Identity & Operational Severity Palette)
+## 4. Color System (Light Theme & Brand Identity Palette)
 
-### Brand Identity Tokens (Finalized Re-theming Pass)
-- `--navy`: `#0B2A61` (Primary institutional navy — replaces placeholder dark navy)
-- `--brand-blue`: `#0169DE` (Primary action buttons, links, core interactive controls)
-- `--accent-blue`: `#0CAAEF` (Highlights, active navigation states, interactive hover states)
-- `--surface-alt`: `#D1E2EE` (Card backgrounds, alternate light surfaces)
-- `--bg`: `#F5F9FE` (Page background — lighter derived tint ensuring high body readability)
+### Brand Identity Tokens (Coral Pink Primary + Sunset Orange Secondary)
+- `--bg`: `#FFFFFF` (Pure white page background)
+- `--surface`: `#FFF7F2` (Warm tinted card and panel surfaces, visibly distinct from pure white via warm tint and elevation shadow)
+- `--surface-alt`: `#F7EBE3` (Elevated inputs, table headers, and sub-panels)
+- `--text`: `#2E2420` (Warm charcoal — replaces navy as primary text color everywhere except the logo mark)
+- `--text-muted`: `#6E5D57` (Secondary labels, muted body copy)
+- `--text-subtle`: `#94827B` (Tertiary / placeholder / disabled text)
+- `--brand-primary`: `#EC6F8E` (Coral Pink — PRIMARY buttons, active nav indicators, links, main CTA; carries dominant brand weight)
+- `--brand-secondary`: `#F2703A` (Sunset Orange — used sparingly: hover states, small icon accents, secondary actions only — never large filled primary buttons)
+- `--brand-accent`: `#A83250` (Deep Wine — minimal decorative use only)
+- `--accent-teal`: `#2C8C7D` (Optional secondary accent for multi-series analytics charts)
+- `--line`: `rgba(46, 36, 32, 0.12)` (Warm charcoal hairline borders)
+- `--line-soft`: `rgba(46, 36, 32, 0.06)`
 
-### Surface & Canvas Scale (Derived from #0B2A61)
-- `navy-950`: `#07182e` (Deep canvas background)
-- `navy-900`: `#0B2A61` (Institutional brand card & container base)
-- `navy-800`: `#143875` (Elevated cards, inputs, secondary interactive surfaces)
-- `slate-700`: `#1c488a` (Border hover, tertiary actions)
-- `slate-600`: `#2b5f9e` (Divider lines, scrollbars)
-- `line`: `rgba(209, 226, 238, 0.14)`
-- `line-soft`: `rgba(209, 226, 238, 0.07)`
-- `ink-0`: `#eef4f7` (Primary high-contrast text)
-- `ink-1`: `#b9c9d3` (Secondary labels, muted text)
-- `ink-2`: `#7f95a1` (Tertiary / placeholder / disabled text)
+### Institutional Header (Solid Dark Bar)
+- Top header bar is retained as a solid institutional dark bar (`#0B2A61`) for official structure and brand authority, with page content below fully rendered in the light theme.
 
 ### Operational Severity & Alert Accents (STRICTLY UNTOUCHED)
 *Critical rule: These tokens encode meteorological alert severity per IMD disaster management protocols and remain completely independent of brand styling.*

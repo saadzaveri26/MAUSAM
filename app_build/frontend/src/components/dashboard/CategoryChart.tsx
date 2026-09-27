@@ -50,10 +50,10 @@ export default function CategoryChart({ data }: CategoryChartProps) {
   const max = Math.max(...data.map((d) => d.count), 1);
 
   return (
-    <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-4">
+    <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 space-y-4">
       <div className="flex items-center justify-between border-b border-line-soft pb-3">
         <div className="flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-accent" />
+          <BarChart2 className="w-4 h-4 text-brand-primary" />
           <h3 className="font-display font-semibold text-sm text-ink-0">
             Event Categorization
           </h3>
@@ -81,7 +81,7 @@ export default function CategoryChart({ data }: CategoryChartProps) {
                   <span className="text-ink-0 font-semibold">{item.count}</span> ({pct}%)
                 </span>
               </div>
-              <div className="w-full h-2 bg-navy-800 rounded-xs overflow-hidden">
+              <div className="w-full h-2 bg-surface-alt rounded-xs overflow-hidden">
                 <div
                   className="h-full rounded-xs transition-all duration-500"
                   style={{ width: `${barWidth}%`, backgroundColor: config.color }}

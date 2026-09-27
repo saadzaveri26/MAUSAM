@@ -17,7 +17,7 @@ export default function StateChart({ data }: StateChartProps) {
   const max = Math.max(...data.map((d) => d.count), 1);
 
   return (
-    <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-4">
+    <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 space-y-4">
       <div className="flex items-center justify-between border-b border-line-soft pb-3">
         <div className="flex items-center gap-2">
           <Map className="w-4 h-4 text-teal" />
@@ -45,7 +45,7 @@ export default function StateChart({ data }: StateChartProps) {
                   {item.count} reports
                 </span>
               </div>
-              <div className="w-full h-2 bg-navy-800 rounded-xs overflow-hidden">
+              <div className="w-full h-2 bg-surface-alt rounded-xs overflow-hidden">
                 <div
                   className="h-full rounded-xs bg-teal transition-all duration-500"
                   style={{ width: `${barWidth}%` }}

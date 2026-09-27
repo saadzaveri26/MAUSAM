@@ -21,33 +21,33 @@ export const metadata: Metadata = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-navy-950 flex flex-col text-ink-0 selection:bg-accent/20 selection:text-accent font-sans">
+    <div className="min-h-screen bg-bg flex flex-col text-ink-0 selection:bg-brand-primary/20 selection:text-brand-primary font-sans">
       {/* Global Institutional Header */}
       <Header />
 
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section — Strict Layout Discipline: max 2 lines headline, <=20 words subtext, max 2 CTAs */}
-        <section className="relative border-b border-line pt-14 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
-          {/* Subtle radial gradient for depth — Phase 1 */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(12,170,239,0.08),transparent)] pointer-events-none" />
+        <section className="relative border-b border-line pt-14 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden bg-bg">
+          {/* Subtle radial gradient for depth — Soft Coral Pink Tint */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(236,111,142,0.06),transparent)] pointer-events-none" />
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Essential Hero Stack */}
             <div className="lg:col-span-7 space-y-6 text-center sm:text-left">
               {/* Eyebrow / Identity Strip */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3.5 pb-1">
-                <div className="h-10 sm:h-11 w-28 sm:w-32 relative shrink-0">
+                <div className="h-10 sm:h-11 w-28 sm:w-32 relative shrink-0 bg-surface rounded-md p-1 border border-line shadow-sm">
                   <Image
-                    src="/brand/meghsetu-logo-darkbg.png"
+                    src="/brand/meghsetu-logo.png"
                     alt="MeghSetu National Weather Intelligence Platform"
                     fill
                     sizes="128px"
-                    className="object-contain object-left"
+                    className="object-contain object-left px-2"
                     priority
                   />
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900 border border-line text-xs font-mono text-ink-1">
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line text-xs font-mono text-ink-1 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
                   <span>MoES — India Meteorological Department</span>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function LandingPage() {
               <div className="pt-1 flex flex-col sm:flex-row items-center gap-3 justify-center sm:justify-start">
                 <Link
                   href="/dashboard"
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-accent hover:bg-accent-hover text-navy-950 font-semibold text-sm flex items-center justify-center gap-2 shadow-l2 transition-all active:scale-[0.98] whitespace-nowrap"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-brand-primary hover:bg-brand-secondary text-navy-950 font-semibold text-sm flex items-center justify-center gap-2 shadow-l2 transition-all active:scale-[0.98] whitespace-nowrap"
                 >
                   <span>Explore Analytics Dashboard</span>
                   <ArrowRight className="w-4 h-4" />
@@ -74,9 +74,9 @@ export default function LandingPage() {
 
                 <Link
                   href="/report"
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-navy-900 hover:bg-navy-800 border border-accent/20 hover:border-accent/50 text-ink-0 font-medium text-sm flex items-center justify-center gap-2 transition-colors shadow-l1 whitespace-nowrap"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-surface hover:bg-surface-alt border border-brand-primary/30 hover:border-brand-primary text-ink-0 font-medium text-sm flex items-center justify-center gap-2 transition-colors shadow-l1 whitespace-nowrap"
                 >
-                  <FileSpreadsheet className="w-4 h-4 text-accent" />
+                  <FileSpreadsheet className="w-4 h-4 text-brand-secondary" />
                   <span>Submit Weather Report</span>
                 </Link>
               </div>
@@ -84,11 +84,11 @@ export default function LandingPage() {
 
             {/* Right Column: Live Operational Situational Monitor Card */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-md bg-navy-900 border border-line rounded-lg p-5 shadow-l2 space-y-4">
+              <div className="w-full max-w-md bg-surface border border-line rounded-lg p-5 shadow-l2 space-y-4">
                 {/* Header status bar */}
                 <div className="flex items-center justify-between border-b border-line-soft pb-3">
                   <div className="flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-accent" />
+                    <Activity className="w-4 h-4 text-brand-primary" />
                     <span className="font-mono text-xs font-semibold text-ink-0 uppercase tracking-wider">
                       Situational Monitor
                     </span>
@@ -106,19 +106,19 @@ export default function LandingPage() {
                     <span className="text-ink-1">248 Active Reports</span>
                   </div>
                   <div className="grid grid-cols-4 gap-2 pt-0.5">
-                    <div className="bg-navy-800 border border-teal/30 rounded p-2 text-center">
+                    <div className="bg-white border border-teal/30 rounded p-2 text-center shadow-xs">
                       <span className="block text-xs font-bold font-mono text-teal">114</span>
                       <span className="text-[10px] font-mono text-ink-2 uppercase">Low</span>
                     </div>
-                    <div className="bg-navy-800 border border-amber/30 rounded p-2 text-center">
+                    <div className="bg-white border border-amber/30 rounded p-2 text-center shadow-xs">
                       <span className="block text-xs font-bold font-mono text-amber">82</span>
                       <span className="text-[10px] font-mono text-ink-2 uppercase">Watch</span>
                     </div>
-                    <div className="bg-navy-800 border border-orange-400/30 rounded p-2 text-center">
+                    <div className="bg-white border border-orange-400/30 rounded p-2 text-center shadow-xs">
                       <span className="block text-xs font-bold font-mono text-orange-400">38</span>
                       <span className="text-[10px] font-mono text-ink-2 uppercase">Alert</span>
                     </div>
-                    <div className="bg-navy-800 border border-red/30 rounded p-2 text-center">
+                    <div className="bg-white border border-red/30 rounded p-2 text-center shadow-xs">
                       <span className="block text-xs font-bold font-mono text-red">14</span>
                       <span className="text-[10px] font-mono text-ink-2 uppercase">Severe</span>
                     </div>
@@ -131,7 +131,7 @@ export default function LandingPage() {
                     ACTIVE FIELD OBSERVATION CLUSTERS
                   </span>
                   <div className="space-y-1.5 text-xs">
-                    <div className="flex items-center justify-between p-2 rounded bg-navy-800/70 border border-line">
+                    <div className="flex items-center justify-between p-2 rounded bg-white border border-line shadow-xs">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-red" />
                         <span className="font-medium text-ink-0">Mumbai MMR</span>
@@ -140,7 +140,7 @@ export default function LandingPage() {
                         Urban Flooding · High Water
                       </span>
                     </div>
-                    <div className="flex items-center justify-between p-2 rounded bg-navy-800/70 border border-line">
+                    <div className="flex items-center justify-between p-2 rounded bg-white border border-line shadow-xs">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-orange-400" />
                         <span className="font-medium text-ink-0">Bikaner, Rajasthan</span>
@@ -149,7 +149,7 @@ export default function LandingPage() {
                         Dust Storm · Gusts 58km/h
                       </span>
                     </div>
-                    <div className="flex items-center justify-between p-2 rounded bg-navy-800/70 border border-line">
+                    <div className="flex items-center justify-between p-2 rounded bg-white border border-line shadow-xs">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-amber" />
                         <span className="font-medium text-ink-0">Coastal Odisha</span>
@@ -166,7 +166,7 @@ export default function LandingPage() {
                   <span className="text-ink-2 text-[11px]">20s Automated Polling</span>
                   <Link
                     href="/dashboard"
-                    className="text-accent hover:text-white inline-flex items-center gap-1 transition-colors"
+                    className="text-brand-primary hover:text-brand-secondary inline-flex items-center gap-1 font-semibold transition-colors"
                   >
                     <span>Launch National GIS Map</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -178,7 +178,7 @@ export default function LandingPage() {
         </section>
 
         {/* Institutional Accreditation & Telemetry Band (Directly below hero, not inside it) */}
-        <section className="bg-navy-900/60 border-b border-line py-5 px-4 sm:px-6">
+        <section className="bg-surface border-b border-line py-5 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs font-mono">
             <div className="flex items-center gap-3 text-ink-2">
               <span className="text-ink-0 font-semibold uppercase tracking-wider">Accreditation</span>
@@ -195,7 +195,7 @@ export default function LandingPage() {
                 <span>Validated Incidents</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-accent" />
+                <span className="w-2 h-2 rounded-full bg-brand-primary" />
                 <span className="text-ink-1 font-semibold">20s</span>
                 <span>Telemetry Cycle</span>
               </div>
@@ -209,10 +209,10 @@ export default function LandingPage() {
         </section>
 
         {/* 4-Stage Operational Pipeline — Asymmetric Bento Grid Rhythm */}
-        <section className="py-20 sm:py-28 px-4 sm:px-6 border-b border-line bg-navy-950">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 border-b border-line bg-bg">
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="max-w-2xl">
-              <span className="text-xs font-mono text-accent uppercase tracking-wider block mb-1">
+              <span className="text-xs font-mono text-brand-primary uppercase tracking-wider block mb-1">
                 Automated Processing Engine
               </span>
               <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-ink-0 tracking-tight leading-tight" style={{ textWrap: 'balance' } as React.CSSProperties}>
@@ -226,11 +226,11 @@ export default function LandingPage() {
             {/* Asymmetric 4-Stage Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Stage 1 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-3 flex flex-col justify-between">
+              <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-accent font-semibold flex items-center justify-between">
+                  <div className="text-xs font-mono text-brand-primary font-semibold flex items-center justify-between">
                     <span>01 · INGEST</span>
-                    <Radio className="w-3.5 h-3.5 text-accent" />
+                    <Radio className="w-3.5 h-3.5 text-brand-primary" />
                   </div>
                   <h3 className="font-display font-semibold text-base text-ink-0">
                     Multi-Channel Ingestion
@@ -245,7 +245,7 @@ export default function LandingPage() {
               </div>
 
               {/* Stage 2 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-3 flex flex-col justify-between">
+              <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
                   <div className="text-xs font-mono text-teal font-semibold flex items-center justify-between">
                     <span>02 · CLASSIFY</span>
@@ -264,7 +264,7 @@ export default function LandingPage() {
               </div>
 
               {/* Stage 3 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-3 flex flex-col justify-between">
+              <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
                   <div className="text-xs font-mono text-amber font-semibold flex items-center justify-between">
                     <span>03 · VERIFY</span>
@@ -283,11 +283,11 @@ export default function LandingPage() {
               </div>
 
               {/* Stage 4 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-5 shadow-l1 space-y-3 flex flex-col justify-between">
+              <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-accent font-semibold flex items-center justify-between">
+                  <div className="text-xs font-mono text-brand-primary font-semibold flex items-center justify-between">
                     <span>04 · VISUALIZE</span>
-                    <Compass className="w-3.5 h-3.5 text-accent" />
+                    <Compass className="w-3.5 h-3.5 text-brand-primary" />
                   </div>
                   <h3 className="font-display font-semibold text-base text-ink-0">
                     Spatial GIS Dispatches
@@ -301,13 +301,11 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
-
           </div>
         </section>
 
         {/* Purpose-Built Operational Capabilities */}
-        <section className="py-20 sm:py-28 px-4 sm:px-6 border-b border-line bg-gradient-to-b from-navy-950 to-navy-900/60">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 border-b border-line bg-bg">
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="max-w-2xl">
               <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-ink-0 tracking-tight leading-tight" style={{ textWrap: 'balance' } as React.CSSProperties}>
@@ -317,8 +315,8 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Capability 1 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-6 shadow-l1 space-y-3.5 flex flex-col hover:border-accent/30 hover:shadow-l2 transition-all">
-                <div className="w-9 h-9 rounded-md bg-navy-800 border border-line flex items-center justify-center text-accent shadow-sm">
+              <div className="bg-surface border border-line rounded-lg p-6 shadow-l1 hover:shadow-l2 space-y-3.5 flex flex-col hover:border-brand-primary/40 transition-all">
+                <div className="w-9 h-9 rounded-md bg-white border border-line flex items-center justify-center text-brand-primary shadow-sm">
                   <Compass className="w-4 h-4" />
                 </div>
                 <h3 className="font-display font-semibold text-base text-ink-0">
@@ -327,16 +325,16 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Interactive geospatial situational map. Incident clusters categorized by IMD 4-tier alert severity with geocoded field metadata.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-accent">
-                  <Link href="/dashboard" className="inline-flex items-center gap-1 hover:underline">
+                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                  <Link href="/dashboard" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     View Live GIS Map <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
               </div>
 
               {/* Capability 2 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-6 shadow-l1 space-y-3.5 flex flex-col hover:border-accent/30 hover:shadow-l2 transition-all">
-                <div className="w-9 h-9 rounded-md bg-navy-800 border border-line flex items-center justify-center text-amber shadow-sm">
+              <div className="bg-surface border border-line rounded-lg p-6 shadow-l1 hover:shadow-l2 space-y-3.5 flex flex-col hover:border-brand-primary/40 transition-all">
+                <div className="w-9 h-9 rounded-md bg-white border border-line flex items-center justify-center text-amber shadow-sm">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="font-display font-semibold text-base text-ink-0">
@@ -345,16 +343,16 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Dense table-first queue for meteorologists. One-click verify and reject actions that dynamically update source trust ratings and blacklist abusive accounts.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-amber">
-                  <Link href="/admin" className="inline-flex items-center gap-1 hover:underline">
+                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                  <Link href="/admin" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     Operator Console <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
               </div>
 
               {/* Capability 3 */}
-              <div className="bg-navy-900 border border-line rounded-lg p-6 shadow-l1 space-y-3.5 flex flex-col hover:border-accent/30 hover:shadow-l2 transition-all">
-                <div className="w-9 h-9 rounded-md bg-navy-800 border border-line flex items-center justify-center text-accent shadow-sm">
+              <div className="bg-surface border border-line rounded-lg p-6 shadow-l1 hover:shadow-l2 space-y-3.5 flex flex-col hover:border-brand-primary/40 transition-all">
+                <div className="w-9 h-9 rounded-md bg-white border border-line flex items-center justify-center text-brand-primary shadow-sm">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <h3 className="font-display font-semibold text-base text-ink-0">
@@ -363,8 +361,8 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Plain-language breakdown of model predictions. Provides confidence percentages, source credibility weights, and spatial deduplication links.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-accent">
-                  <Link href="/report" className="inline-flex items-center gap-1 hover:underline">
+                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                  <Link href="/report" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     Test Report Classification <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -374,7 +372,7 @@ export default function LandingPage() {
         </section>
 
         {/* Operational Reliability & Service Standards */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-line bg-navy-950">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-line bg-surface/50">
           <div className="max-w-6xl mx-auto space-y-8">
             <div>
               <h2 className="font-display font-bold text-xl sm:text-2xl text-ink-0">
@@ -383,22 +381,22 @@ export default function LandingPage() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
-              <div className="p-4 bg-navy-900 border border-line rounded-lg">
+              <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
                 <span className="text-ink-2 text-[10px] block mb-1 uppercase">Dispatch Latency</span>
                 <span className="text-ink-0 font-semibold block">&lt; 20 Seconds</span>
                 <span className="text-ink-2 text-[11px]">Real-Time Streaming Sync</span>
               </div>
-              <div className="p-4 bg-navy-900 border border-line rounded-lg">
+              <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
                 <span className="text-ink-2 text-[10px] block mb-1 uppercase">Data Verification</span>
                 <span className="text-ink-0 font-semibold block">Multi-Source</span>
                 <span className="text-ink-2 text-[11px]">Cross-Corroborated Feeds</span>
               </div>
-              <div className="p-4 bg-navy-900 border border-line rounded-lg">
+              <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
                 <span className="text-ink-2 text-[10px] block mb-1 uppercase">Alert Indexing</span>
                 <span className="text-ink-0 font-semibold block">4-Tier IMD Scale</span>
                 <span className="text-ink-2 text-[11px]">Green · Yellow · Orange · Red</span>
               </div>
-              <div className="p-4 bg-navy-900 border border-line rounded-lg">
+              <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
                 <span className="text-ink-2 text-[10px] block mb-1 uppercase">Availability</span>
                 <span className="text-ink-0 font-semibold block">24 / 7 Readiness</span>
                 <span className="text-ink-2 text-[11px]">Mission-Critical Operations</span>
@@ -409,7 +407,7 @@ export default function LandingPage() {
       </main>
 
       {/* Institutional Footer */}
-      <footer className="py-8 px-4 sm:px-6 bg-navy-950 border-t border-line text-xs font-mono text-ink-2">
+      <footer className="py-8 px-4 sm:px-6 bg-surface border-t border-line text-xs font-mono text-ink-2">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="text-ink-1 font-medium">

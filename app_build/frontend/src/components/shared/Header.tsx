@@ -16,10 +16,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-navy-900 border-b border-line sticky top-0 z-50">
+    <header className="bg-navy-900 border-b border-navy-800 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-md bg-white border border-line flex items-center justify-center p-1 group-hover:border-accent transition-colors shadow-sm overflow-hidden">
+          <div className="w-8 h-8 rounded-md bg-white border border-navy-700 flex items-center justify-center p-1 group-hover:border-brand-primary transition-colors shadow-sm overflow-hidden">
             <Image
               src="/brand/meghsetu-emblem.png"
               alt="MeghSetu Emblem"
@@ -29,10 +29,10 @@ export default function Header() {
             />
           </div>
           <div>
-            <span className="font-display font-bold text-sm tracking-tight text-ink-0 block leading-none">
+            <span className="font-display font-bold text-sm tracking-tight text-white block leading-none">
               MeghSetu
             </span>
-            <span className="text-[10px] text-ink-2 font-mono block mt-0.5">
+            <span className="text-[10px] text-slate-300 font-mono block mt-0.5">
               MoES · India Meteorological Department
             </span>
           </div>
@@ -48,11 +48,11 @@ export default function Header() {
                 href={item.href}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                   isActive
-                    ? 'bg-navy-800 text-accent border border-accent/40 shadow-sm'
-                    : 'text-ink-1 hover:text-ink-0 hover:bg-navy-800/60'
+                    ? 'bg-white/10 text-white border border-brand-primary/80 shadow-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <Icon className="w-3.5 h-3.5" />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-brand-primary' : 'text-slate-400'}`} />
                 <span className="hidden sm:inline">{item.label}</span>
               </Link>
             );

@@ -17,7 +17,7 @@ export default function RootLayout({
       lang="en"
       className={`${notoSans.variable} ${notoSansDisplay.variable} ${ibmPlexMono.variable}`}
     >
-      <body className="min-h-screen bg-navy-950 text-ink-0 antialiased font-sans selection:bg-amber-dim selection:text-amber">
+      <body className="min-h-screen bg-bg text-text antialiased font-sans selection:bg-brand-primary/20 selection:text-brand-primary">
         {children}
       </body>
     </html>
