@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, Suspense } from 'react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { KeyRound, ArrowRight, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { KeyRound, ArrowRight, AlertCircle, CheckCircle2, Home } from 'lucide-react';
 
 function LoginForm() {
   const router = useRouter();
@@ -50,6 +51,23 @@ function LoginForm() {
 
   return (
     <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-4 text-text font-sans">
+      {/* Top Nav: Back to Home & Dashboard */}
+      <div className="w-full max-w-md mb-3 flex items-center justify-between">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-surface border border-line text-xs font-medium text-ink-1 hover:text-brand-primary hover:border-brand-primary/40 transition-all shadow-xs"
+        >
+          <Home className="w-3.5 h-3.5" />
+          <span>Back to Home</span>
+        </Link>
+        <Link
+          href="/dashboard"
+          className="text-xs text-ink-2 hover:text-brand-primary transition-colors"
+        >
+          Public Dashboard &rarr;
+        </Link>
+      </div>
+
       {/* Container with UX4G tokens: rounded-lg (12px), shadow-l2, line border */}
       <div className="w-full max-w-md bg-surface border border-line rounded-lg shadow-l2 p-6 sm:p-8">
         {/* Header with operational authority badge */}
@@ -119,6 +137,16 @@ function LoginForm() {
               </>
             )}
           </button>
+
+          <div className="pt-1 text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center gap-1.5 text-xs text-ink-2 hover:text-brand-primary transition-colors py-1"
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Return to Homepage</span>
+            </Link>
+          </div>
         </form>
 
         <div className="mt-8 pt-4 border-t border-line-soft flex items-center justify-between text-[11px] text-ink-2 font-medium">
