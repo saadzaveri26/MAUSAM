@@ -1,4 +1,4 @@
-import { Noto_Sans, Noto_Sans_Display, IBM_Plex_Mono } from 'next/font/google';
+import { Noto_Sans, Noto_Sans_Display, IBM_Plex_Mono, Newsreader } from 'next/font/google';
 
 export const notoSans = Noto_Sans({
   subsets: ['latin', 'devanagari'],
@@ -18,5 +18,13 @@ export const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-plex-mono',
+  display: 'swap',
+});
+
+export const newsreader = Newsreader({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-newsreader',
   display: 'swap',
 });

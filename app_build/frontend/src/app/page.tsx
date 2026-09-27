@@ -11,7 +11,7 @@ import {
   Cpu,
   Activity,
 } from 'lucide-react';
-import Header from '@/components/shared/Header';
+import LandingHeader from '@/components/shared/LandingHeader';
 
 export const metadata: Metadata = {
   title: 'MeghSetu — National Weather Big Data Analytics Platform',
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bg flex flex-col text-ink-0 selection:bg-brand-primary/20 selection:text-brand-primary font-sans">
-      {/* Global Institutional Header */}
-      <Header />
+      {/* Dedicated Landing Page Header — Distinct, light, slim text links */}
+      <LandingHeader />
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* Hero Section — Strict Layout Discipline: max 2 lines headline, <=20 words subtext, max 2 CTAs */}
+        {/* Hero Section — Editorial Serif Headline + Noto Sans Body */}
         <section className="relative border-b border-line pt-14 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden bg-bg">
           {/* Subtle radial gradient for depth — Soft Coral Pink Tint */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(236,111,142,0.06),transparent)] pointer-events-none" />
@@ -46,14 +46,14 @@ export default function LandingPage() {
                     priority
                   />
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line text-xs font-mono text-ink-1 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line text-xs font-sans text-ink-1 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
                   <span>MoES — India Meteorological Department</span>
                 </div>
               </div>
 
-              {/* Headline: Max 2 lines desktop */}
-              <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-ink-0 tracking-tight leading-[1.08]" style={{ textWrap: 'balance' } as React.CSSProperties}>
+              {/* Headline: Distinctive Editorial Serif (Newsreader), max 2 lines desktop */}
+              <h1 className="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl text-ink-0 tracking-tight leading-[1.12]" style={{ textWrap: 'balance' } as React.CSSProperties}>
                 India&apos;s weather signal, unified from ground truth to radar.
               </h1>
 
