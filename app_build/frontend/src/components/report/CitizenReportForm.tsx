@@ -259,12 +259,12 @@ export default function CitizenReportForm() {
                 <h2 className="font-display font-semibold text-lg text-ink-0">
                   Observation Ingested &amp; Analyzed
                 </h2>
-                <p className="text-xs text-ink-2 font-mono">
+                <p className="text-xs text-ink-2">
                   RECORD ID #{mlResult.id} · OPERATIONAL VERIFICATION PIPELINE
                 </p>
               </div>
             </div>
-            <div className="px-3 py-1.5 rounded-md bg-teal-dim border border-teal/30 text-teal text-xs font-mono font-medium shrink-0 flex items-center gap-1.5">
+            <div className="px-3 py-1.5 rounded-md bg-teal-dim border border-teal/30 text-teal text-xs font-medium shrink-0 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
               <span>Pipeline Verified</span>
             </div>
@@ -286,14 +286,14 @@ export default function CitizenReportForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Event Category */}
             <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
-              <span className="text-[11px] font-mono text-ink-2 block mb-1">
+              <span className="text-[11px] text-ink-2 block mb-1">
                 CLASSIFIED EVENT
               </span>
               <div className="flex items-baseline justify-between">
                 <span className="text-base font-semibold text-ink-0">
                   {mlResult.event_category}
                 </span>
-                <span className="text-xs font-mono text-teal">
+                <span className="text-xs text-teal font-semibold">
                   {confidencePct}% Confidence
                 </span>
               </div>
@@ -304,14 +304,14 @@ export default function CitizenReportForm() {
 
             {/* Assessed Severity */}
             <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
-              <span className="text-[11px] font-mono text-ink-2 block mb-1">
+              <span className="text-[11px] text-ink-2 block mb-1">
                 OPERATIONAL SEVERITY
               </span>
               <div className="flex items-baseline justify-between">
                 <span className={`text-xs px-2 py-0.5 rounded border font-medium ${currentSev.color}`}>
                   {mlResult.severity}
                 </span>
-                <span className="text-xs font-mono text-ink-1">
+                <span className="text-xs text-ink-1">
                   IMD Scale
                 </span>
               </div>
@@ -322,14 +322,14 @@ export default function CitizenReportForm() {
 
             {/* Credibility Score */}
             <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
-              <span className="text-[11px] font-mono text-ink-2 block mb-1">
+              <span className="text-[11px] text-ink-2 block mb-1">
                 CREDIBILITY RATING
               </span>
               <div className="flex items-baseline justify-between">
                 <span className="text-base font-semibold text-ink-0">
                   {credibilityPct}% Reliable
                 </span>
-                <span className="text-xs font-mono text-amber">
+                <span className="text-xs text-amber font-semibold">
                   {credibilityPct >= 65 ? 'Verified Source Signal' : 'Standard Citizen Signal'}
                 </span>
               </div>
@@ -340,14 +340,14 @@ export default function CitizenReportForm() {
 
             {/* Duplicate Filter */}
             <div className="p-3.5 bg-white border border-line rounded-md shadow-xs">
-              <span className="text-[11px] font-mono text-ink-2 block mb-1">
+              <span className="text-[11px] text-ink-2 block mb-1">
                 DEDUPLICATION STATUS
               </span>
               <div className="flex items-baseline justify-between">
                 <span className="text-sm font-semibold text-ink-0">
                   {mlResult.is_duplicate ? 'Corroborating Event' : 'Unique Incident'}
                 </span>
-                <span className="text-xs font-mono text-ink-2">
+                <span className="text-xs text-ink-2">
                   {mlResult.is_duplicate ? `Linked to #${mlResult.duplicate_of_id}` : 'Primary Entry'}
                 </span>
               </div>
@@ -361,15 +361,15 @@ export default function CitizenReportForm() {
 
           {/* Submission Details */}
           <div className="p-3 bg-surface-alt border border-line rounded-md text-xs text-ink-1 space-y-1">
-            <div className="flex justify-between font-mono text-[11px]">
+            <div className="flex justify-between text-[11px]">
               <span className="text-ink-2">Location:</span>
               <span className="text-ink-0">{mlResult.city}, {mlResult.state} {mlResult.latitude ? `(${mlResult.latitude}°N, ${mlResult.longitude}°E)` : ''}</span>
             </div>
-            <div className="flex justify-between font-mono text-[11px]">
+            <div className="flex justify-between text-[11px]">
               <span className="text-ink-2">Status:</span>
               <span className="text-amber">Pending Admin Verification Queue</span>
             </div>
-            <div className="flex justify-between font-mono text-[11px]">
+            <div className="flex justify-between text-[11px]">
               <span className="text-ink-2">Logged Text:</span>
               <span className="text-ink-0 italic truncate max-w-[280px]">{mlResult.raw_text}</span>
             </div>
@@ -401,7 +401,7 @@ export default function CitizenReportForm() {
             in real-time by ML models for credibility scoring and duplicate detection.
           </p>
         </div>
-        <div className="px-3.5 py-2.5 rounded-md bg-brand-primary/10 border border-brand-primary/30 text-xs font-mono shrink-0 self-start sm:self-center space-y-1">
+        <div className="px-3.5 py-2.5 rounded-md bg-brand-primary/10 border border-brand-primary/30 text-xs shrink-0 self-start sm:self-center space-y-1">
           <div className="flex items-center gap-1.5 text-brand-primary font-medium">
             <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
             <span>Live Intake Channel</span>
@@ -419,9 +419,9 @@ export default function CitizenReportForm() {
 
       {/* Main Single Column Form */}
       <form onSubmit={handleSubmit} className="bg-surface border border-line rounded-lg p-5 sm:p-6 shadow-l2 space-y-5">
-        {/* Category selector — visual icon grid instead of plain dropdown */}
+        {/* Category selector — solid filled pink background when selected */}
         <div>
-          <label className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-3">
+          <label className="block text-xs text-ink-1 uppercase tracking-wider mb-3 font-semibold">
             Incident Category <span className="text-brand-primary">*</span>
           </label>
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -435,11 +435,11 @@ export default function CitizenReportForm() {
                   onClick={() => setCategory(cat.label)}
                   className={`flex flex-col items-center gap-1.5 p-3 rounded-md border text-xs font-medium transition-all ${
                     isSelected
-                      ? 'bg-brand-primary/15 border-brand-primary text-brand-primary shadow-sm'
+                      ? 'bg-brand-primary text-white border-brand-primary shadow-sm font-semibold ring-2 ring-brand-primary/30'
                       : 'bg-white border-line text-ink-1 hover:border-brand-primary/40 hover:text-ink-0'
                   }`}
                 >
-                  <Icon className="w-4 h-4" strokeWidth={1.5} />
+                  <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : ''}`} strokeWidth={isSelected ? 2 : 1.5} />
                   <span className="text-[11px] leading-tight text-center">{cat.label}</span>
                 </button>
               );
@@ -449,7 +449,7 @@ export default function CitizenReportForm() {
 
         {/* Observation Text */}
         <div>
-          <label htmlFor="report-text" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
+          <label htmlFor="report-text" className="block text-xs text-ink-1 uppercase tracking-wider mb-2 font-semibold">
             Observation Details <span className="text-brand-primary">*</span>
           </label>
           <textarea
@@ -469,7 +469,7 @@ export default function CitizenReportForm() {
         {/* GPS Capture with Explicit Visible Confirmation */}
         <div className="p-3.5 bg-surface-alt border border-line rounded-md space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-ink-1 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-xs text-ink-1 uppercase tracking-wider flex items-center gap-1.5 font-semibold">
               <MapPin className="w-3.5 h-3.5 text-brand-primary" />
               <span>GPS Geolocation</span>
             </span>
@@ -478,7 +478,7 @@ export default function CitizenReportForm() {
               <button
                 type="button"
                 onClick={handleClearGps}
-                className="text-[11px] font-mono text-ink-2 hover:text-red transition-colors"
+                className="text-[11px] text-ink-2 hover:text-red transition-colors"
               >
                 Clear Coordinates
               </button>
@@ -514,7 +514,7 @@ export default function CitizenReportForm() {
               <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
               <div className="space-y-0.5">
                 <span className="font-semibold block">GPS Coordinates Locked &amp; Confirmed</span>
-                <span className="font-mono text-[11px] text-ink-0 block">
+                <span className="text-[11px] text-ink-0 block">
                   {gps.latitude?.toFixed(4)}° N, {gps.longitude?.toFixed(4)}° E (±{gps.accuracy}m accuracy)
                 </span>
               </div>
@@ -537,7 +537,7 @@ export default function CitizenReportForm() {
         {/* State & City Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="report-state" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
+            <label htmlFor="report-state" className="block text-xs text-ink-1 uppercase tracking-wider mb-2 font-semibold">
               State / UT <span className="text-brand-primary">*</span>
             </label>
             <select
@@ -555,7 +555,7 @@ export default function CitizenReportForm() {
           </div>
 
           <div>
-            <label htmlFor="report-city" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
+            <label htmlFor="report-city" className="block text-xs text-ink-1 uppercase tracking-wider mb-2 font-semibold">
               City / District <span className="text-brand-primary">*</span>
             </label>
             <input
@@ -572,7 +572,7 @@ export default function CitizenReportForm() {
 
         {/* Reporter Handle (Provenance) */}
         <div>
-          <label htmlFor="report-handle" className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
+          <label htmlFor="report-handle" className="block text-xs text-ink-1 uppercase tracking-wider mb-2 font-semibold">
             Reporter Identifier / Handle
           </label>
           <input
@@ -581,7 +581,7 @@ export default function CitizenReportForm() {
             value={reporterHandle}
             onChange={(e) => setReporterHandle(e.target.value)}
             placeholder="citizen_field_reporter"
-            className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors font-mono shadow-xs"
+            className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors shadow-xs"
           />
           <span className="block text-[11px] text-ink-2 mt-1">
             Builds source credibility history. Retains anonymity if desired.
@@ -595,7 +595,7 @@ export default function CitizenReportForm() {
           className="w-full bg-brand-primary hover:bg-brand-secondary text-navy-950 font-semibold text-sm py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
         >
           {submitting ? (
-            <span className="inline-block animate-pulse font-mono text-xs">
+            <span className="inline-block animate-pulse text-xs">
               Transmitting to ML Pipeline…
             </span>
           ) : (
@@ -607,7 +607,7 @@ export default function CitizenReportForm() {
         </button>
 
         <div className="pt-2 text-center">
-          <span className="text-[11px] text-ink-2 font-mono">
+          <span className="text-[11px] text-ink-2">
             Government of India · Ministry of Earth Sciences · India Meteorological Department
           </span>
         </div>

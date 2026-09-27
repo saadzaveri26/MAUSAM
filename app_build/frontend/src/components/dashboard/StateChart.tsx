@@ -25,7 +25,7 @@ export default function StateChart({ data }: StateChartProps) {
             State-Wise Activity
           </h3>
         </div>
-        <span className="text-[11px] font-mono text-ink-2">
+        <span className="text-[11px] text-ink-2">
           Regional incidence ranking
         </span>
       </div>
@@ -38,10 +38,10 @@ export default function StateChart({ data }: StateChartProps) {
             <div key={item.state} className="space-y-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-ink-1 flex items-center gap-1.5">
-                  <span className="font-mono text-[10px] text-ink-2 w-4">#{idx + 1}</span>
+                  <span className="text-[10px] text-ink-2 w-4">#{idx + 1}</span>
                   <span>{item.state}</span>
                 </span>
-                <span className="font-mono text-[11px] text-ink-0 font-semibold">
+                <span className="text-[11px] text-ink-0 font-semibold">
                   {item.count} reports
                 </span>
               </div>

@@ -15,7 +15,7 @@ export default function ReportPage() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-8 sm:py-10">
         <CitizenReportForm />
       </main>
-      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 font-mono bg-surface">
+      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 bg-surface">
         MeghSetu · National Weather Big Data Analytics Platform · Ministry of Earth Sciences (MoES)
       </footer>
     </div>

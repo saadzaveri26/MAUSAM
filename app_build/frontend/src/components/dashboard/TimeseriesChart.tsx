@@ -45,7 +45,7 @@ export default function TimeseriesChart({ data }: TimeseriesChartProps) {
             14-Day Ingestion Velocity
           </h3>
         </div>
-        <span className="text-[11px] font-mono text-ink-2">
+        <span className="text-[11px] text-ink-2">
           Daily multi-source volume
         </span>
       </div>
@@ -92,7 +92,7 @@ export default function TimeseriesChart({ data }: TimeseriesChartProps) {
         </div>
 
         {/* Date axis labels */}
-        <div className="flex justify-between text-[10px] font-mono text-ink-2 pt-1 border-t border-line-soft">
+        <div className="flex justify-between text-[10px] text-ink-2 pt-1 border-t border-line-soft">
           <span>{data[0]?.date ? data[0].date.slice(5) : '—'}</span>
           <span>Mid-Period</span>
           <span>{data[data.length - 1]?.date ? data[data.length - 1].date.slice(5) : 'Today'}</span>

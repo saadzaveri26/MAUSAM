@@ -89,11 +89,11 @@ export default function LandingPage() {
                 <div className="flex items-center justify-between border-b border-line-soft pb-3">
                   <div className="flex items-center gap-2">
                     <Activity className="w-4 h-4 text-brand-primary" />
-                    <span className="font-mono text-xs font-semibold text-ink-0 uppercase tracking-wider">
+                    <span className="text-xs font-semibold text-ink-0 uppercase tracking-wider">
                       Situational Monitor
                     </span>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-teal-dim text-teal border border-teal/30">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] bg-teal-dim text-teal border border-teal/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
                     Live Ingestion Active
                   </span>
@@ -101,33 +101,33 @@ export default function LandingPage() {
 
                 {/* IMD 4-Tier Severity Distribution */}
                 <div className="space-y-2">
-                  <div className="flex justify-between items-center text-[11px] font-mono text-ink-2">
+                  <div className="flex justify-between items-center text-[11px] text-ink-2 font-medium">
                     <span>IMD 4-TIER ALERT SEVERITY MATRIX</span>
                     <span className="text-ink-1">248 Active Reports</span>
                   </div>
                   <div className="grid grid-cols-4 gap-2 pt-0.5">
                     <div className="bg-white border border-teal/30 rounded p-2 text-center shadow-xs">
-                      <span className="block text-xs font-bold font-mono text-teal">114</span>
-                      <span className="text-[10px] font-mono text-ink-2 uppercase">Low</span>
+                      <span className="block text-xs font-bold text-teal">114</span>
+                      <span className="text-[10px] text-ink-2 uppercase">Low</span>
                     </div>
                     <div className="bg-white border border-amber/30 rounded p-2 text-center shadow-xs">
-                      <span className="block text-xs font-bold font-mono text-amber">82</span>
-                      <span className="text-[10px] font-mono text-ink-2 uppercase">Watch</span>
+                      <span className="block text-xs font-bold text-amber">82</span>
+                      <span className="text-[10px] text-ink-2 uppercase">Watch</span>
                     </div>
                     <div className="bg-white border border-orange-400/30 rounded p-2 text-center shadow-xs">
-                      <span className="block text-xs font-bold font-mono text-orange-400">38</span>
-                      <span className="text-[10px] font-mono text-ink-2 uppercase">Alert</span>
+                      <span className="block text-xs font-bold text-orange-400">38</span>
+                      <span className="text-[10px] text-ink-2 uppercase">Alert</span>
                     </div>
                     <div className="bg-white border border-red/30 rounded p-2 text-center shadow-xs">
-                      <span className="block text-xs font-bold font-mono text-red">14</span>
-                      <span className="text-[10px] font-mono text-ink-2 uppercase">Severe</span>
+                      <span className="block text-xs font-bold text-red">14</span>
+                      <span className="text-[10px] text-ink-2 uppercase">Severe</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Live Geographic Incident Clusters */}
                 <div className="space-y-2 pt-1 border-t border-line-soft">
-                  <span className="text-[11px] font-mono text-ink-2 block">
+                  <span className="text-[11px] text-ink-2 block font-medium">
                     ACTIVE FIELD OBSERVATION CLUSTERS
                   </span>
                   <div className="space-y-1.5 text-xs">
@@ -136,7 +136,7 @@ export default function LandingPage() {
                         <span className="w-2 h-2 rounded-full bg-red" />
                         <span className="font-medium text-ink-0">Mumbai MMR</span>
                       </div>
-                      <span className="font-mono text-[11px] text-red font-semibold">
+                      <span className="text-[11px] text-red font-semibold">
                         Urban Flooding · High Water
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function LandingPage() {
                         <span className="w-2 h-2 rounded-full bg-orange-400" />
                         <span className="font-medium text-ink-0">Bikaner, Rajasthan</span>
                       </div>
-                      <span className="font-mono text-[11px] text-orange-400 font-semibold">
+                      <span className="text-[11px] text-orange-400 font-semibold">
                         Dust Storm · Gusts 58km/h
                       </span>
                     </div>
@@ -154,7 +154,7 @@ export default function LandingPage() {
                         <span className="w-2 h-2 rounded-full bg-amber" />
                         <span className="font-medium text-ink-0">Coastal Odisha</span>
                       </div>
-                      <span className="font-mono text-[11px] text-amber font-semibold">
+                      <span className="text-[11px] text-amber font-semibold">
                         Convective Thunderstorms
                       </span>
                     </div>
@@ -162,7 +162,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Bottom link to console */}
-                <div className="pt-2 border-t border-line-soft flex items-center justify-between text-xs font-mono">
+                <div className="pt-2 border-t border-line-soft flex items-center justify-between text-xs">
                   <span className="text-ink-2 text-[11px]">20s Automated Polling</span>
                   <Link
                     href="/dashboard"
@@ -179,7 +179,7 @@ export default function LandingPage() {
 
         {/* Institutional Accreditation & Telemetry Band (Directly below hero, not inside it) */}
         <section className="bg-surface border-b border-line py-5 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs font-mono">
+          <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs">
             <div className="flex items-center gap-3 text-ink-2">
               <span className="text-ink-0 font-semibold uppercase tracking-wider">Accreditation</span>
               <span>·</span>
@@ -212,7 +212,7 @@ export default function LandingPage() {
         <section className="py-20 sm:py-28 px-4 sm:px-6 border-b border-line bg-bg">
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="max-w-2xl">
-              <span className="text-xs font-mono text-brand-primary uppercase tracking-wider block mb-1">
+              <span className="text-xs text-brand-primary uppercase tracking-wider block mb-1 font-semibold">
                 Automated Processing Engine
               </span>
               <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-ink-0 tracking-tight leading-tight" style={{ textWrap: 'balance' } as React.CSSProperties}>
@@ -228,7 +228,7 @@ export default function LandingPage() {
               {/* Stage 1 */}
               <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-brand-primary font-semibold flex items-center justify-between">
+                  <div className="text-xs text-brand-primary font-semibold flex items-center justify-between">
                     <span>01 · INGEST</span>
                     <Radio className="w-3.5 h-3.5 text-brand-primary" />
                   </div>
@@ -239,7 +239,7 @@ export default function LandingPage() {
                     Stream ingestion pulls citizen mobile reports, public APIs, and social feeds tagged #IMD into a normalized operational queue.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-line-soft font-mono text-[10px] text-ink-2">
+                <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
                   Citizen GPS + Geo-Hashtags
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function LandingPage() {
               {/* Stage 2 */}
               <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-teal font-semibold flex items-center justify-between">
+                  <div className="text-xs text-teal font-semibold flex items-center justify-between">
                     <span>02 · CLASSIFY</span>
                     <Cpu className="w-3.5 h-3.5 text-teal" />
                   </div>
@@ -258,7 +258,7 @@ export default function LandingPage() {
                     Automated classification algorithms process incoming reports into rainfall, flooding, storm, or heatwave categories with real-time confidence scores.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-line-soft font-mono text-[10px] text-ink-2">
+                <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
                   Automated Incident Classification
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function LandingPage() {
               {/* Stage 3 */}
               <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-amber font-semibold flex items-center justify-between">
+                  <div className="text-xs text-amber font-semibold flex items-center justify-between">
                     <span>03 · VERIFY</span>
                     <ShieldCheck className="w-3.5 h-3.5 text-amber" />
                   </div>
@@ -277,7 +277,7 @@ export default function LandingPage() {
                     Source trust history calculates reliability. Pattern-matching algorithms cluster repetitive re-shares within spatial-temporal windows.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-line-soft font-mono text-[10px] text-ink-2">
+                <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
                   Spatial-Temporal Deduplication
                 </div>
               </div>
@@ -285,7 +285,7 @@ export default function LandingPage() {
               {/* Stage 4 */}
               <div className="bg-surface border border-line rounded-lg p-5 shadow-l1 hover:shadow-l2 space-y-3 flex flex-col justify-between transition-all">
                 <div className="space-y-2.5">
-                  <div className="text-xs font-mono text-brand-primary font-semibold flex items-center justify-between">
+                  <div className="text-xs text-brand-primary font-semibold flex items-center justify-between">
                     <span>04 · VISUALIZE</span>
                     <Compass className="w-3.5 h-3.5 text-brand-primary" />
                   </div>
@@ -296,7 +296,7 @@ export default function LandingPage() {
                     Verified incidents plot onto interactive GIS maps with IMD 4-tier alert colors, updating operational monitors every 20 seconds.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-line-soft font-mono text-[10px] text-ink-2">
+                <div className="pt-3 border-t border-line-soft text-[10px] text-ink-2 font-medium">
                   Operational GIS Mapping
                 </div>
               </div>
@@ -325,7 +325,7 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Interactive geospatial situational map. Incident clusters categorized by IMD 4-tier alert severity with geocoded field metadata.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                <div className="pt-2 mt-auto text-[11px] text-brand-primary">
                   <Link href="/dashboard" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     View Live GIS Map <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -343,7 +343,7 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Dense table-first queue for meteorologists. One-click verify and reject actions that dynamically update source trust ratings and blacklist abusive accounts.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                <div className="pt-2 mt-auto text-[11px] text-brand-primary">
                   <Link href="/admin" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     Operator Console <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -361,7 +361,7 @@ export default function LandingPage() {
                 <p className="text-xs text-ink-1 leading-relaxed">
                   Plain-language breakdown of model predictions. Provides confidence percentages, source credibility weights, and spatial deduplication links.
                 </p>
-                <div className="pt-2 mt-auto text-[11px] font-mono text-brand-primary">
+                <div className="pt-2 mt-auto text-[11px] text-brand-primary">
                   <Link href="/report" className="inline-flex items-center gap-1 hover:text-brand-secondary transition-colors font-medium">
                     Test Report Classification <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -380,24 +380,24 @@ export default function LandingPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
-                <span className="text-ink-2 text-[10px] block mb-1 uppercase">Dispatch Latency</span>
+                <span className="text-ink-2 text-[10px] block mb-1 uppercase font-medium">Dispatch Latency</span>
                 <span className="text-ink-0 font-semibold block">&lt; 20 Seconds</span>
                 <span className="text-ink-2 text-[11px]">Real-Time Streaming Sync</span>
               </div>
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
-                <span className="text-ink-2 text-[10px] block mb-1 uppercase">Data Verification</span>
+                <span className="text-ink-2 text-[10px] block mb-1 uppercase font-medium">Data Verification</span>
                 <span className="text-ink-0 font-semibold block">Multi-Source</span>
                 <span className="text-ink-2 text-[11px]">Cross-Corroborated Feeds</span>
               </div>
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
-                <span className="text-ink-2 text-[10px] block mb-1 uppercase">Alert Indexing</span>
+                <span className="text-ink-2 text-[10px] block mb-1 uppercase font-medium">Alert Indexing</span>
                 <span className="text-ink-0 font-semibold block">4-Tier IMD Scale</span>
                 <span className="text-ink-2 text-[11px]">Green · Yellow · Orange · Red</span>
               </div>
               <div className="p-4 bg-surface border border-line rounded-lg shadow-sm">
-                <span className="text-ink-2 text-[10px] block mb-1 uppercase">Availability</span>
+                <span className="text-ink-2 text-[10px] block mb-1 uppercase font-medium">Availability</span>
                 <span className="text-ink-0 font-semibold block">24 / 7 Readiness</span>
                 <span className="text-ink-2 text-[11px]">Mission-Critical Operations</span>
               </div>
@@ -407,7 +407,7 @@ export default function LandingPage() {
       </main>
 
       {/* Institutional Footer */}
-      <footer className="py-8 px-4 sm:px-6 bg-surface border-t border-line text-xs font-mono text-ink-2">
+      <footer className="py-8 px-4 sm:px-6 bg-surface border-t border-line text-xs text-ink-2">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="text-ink-1 font-medium">

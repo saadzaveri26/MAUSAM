@@ -234,13 +234,13 @@ export default function AdminConsoleView() {
   function getStatusBadge(status: string) {
     switch (status) {
       case 'Verified':
-        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-teal-dim text-teal border border-teal/30"><span className="w-1.5 h-1.5 rounded-full bg-teal" />Verified</span>;
+        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-teal-dim text-teal border border-teal/30"><span className="w-1.5 h-1.5 rounded-full bg-teal" />Verified</span>;
       case 'Rejected':
-        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-red-dim text-red border border-red/30"><span className="w-1.5 h-1.5 rounded-full bg-red" />Rejected</span>;
+        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-dim text-red border border-red/30"><span className="w-1.5 h-1.5 rounded-full bg-red" />Rejected</span>;
       case 'Auto-Flagged':
-        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-dim text-amber border border-amber/30"><span className="w-1.5 h-1.5 rounded-full bg-amber" />Flagged</span>;
+        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-dim text-amber border border-amber/30"><span className="w-1.5 h-1.5 rounded-full bg-amber" />Flagged</span>;
       default:
-        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-brand-primary/10 text-brand-primary border border-brand-primary/30"><span className="w-1.5 h-1.5 rounded-full bg-brand-primary" />Pending</span>;
+        return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-brand-primary/10 text-brand-primary border border-brand-primary/30"><span className="w-1.5 h-1.5 rounded-full bg-brand-primary" />Pending</span>;
     }
   }
 
@@ -258,7 +258,7 @@ export default function AdminConsoleView() {
 
     return (
       <div className="w-20 space-y-1">
-        <div className="flex justify-between font-mono text-[11px]">
+        <div className="flex justify-between text-[11px]">
           <span className={`font-semibold ${textColor}`}>{pct}%</span>
         </div>
         <div className="w-full h-1.5 bg-surface-alt rounded-full overflow-hidden">
@@ -281,7 +281,7 @@ export default function AdminConsoleView() {
               <h1 className="font-display font-bold text-base text-ink-0 leading-tight">
                 IMD Operational Verification Console
               </h1>
-              <span className="text-[11px] font-mono text-ink-2">
+              <span className="text-[11px] text-ink-2">
                 ACTIVE OPERATOR SESSION · PRIVILEGED AUDIT QUEUE
               </span>
             </div>
@@ -293,7 +293,7 @@ export default function AdminConsoleView() {
           <button
             onClick={handleTriggerSimulate}
             disabled={simulating}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-surface-alt border border-line text-xs font-mono text-brand-primary transition-colors disabled:opacity-50 shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-surface-alt border border-line text-xs text-brand-primary transition-colors disabled:opacity-50 shadow-xs"
             title="Ingest a simulated multi-source batch for demonstration"
           >
             <Radio className="w-3.5 h-3.5" />
@@ -302,7 +302,7 @@ export default function AdminConsoleView() {
 
           <button
             onClick={handleLogout}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-red-dim border border-line hover:border-red/40 text-xs font-mono text-ink-2 hover:text-red transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-red-dim border border-line hover:border-red/40 text-xs text-ink-2 hover:text-red transition-colors shadow-xs"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>Lock Session</span>
@@ -311,7 +311,7 @@ export default function AdminConsoleView() {
       </div>
 
       {simMessage && (
-        <div className="p-3 bg-surface border border-amber/40 rounded-md text-xs text-amber font-mono flex items-center gap-2 shadow-xs">
+        <div className="p-3 bg-surface border border-amber/40 rounded-md text-xs text-amber flex items-center gap-2 shadow-xs">
           <Radio className="w-3.5 h-3.5 animate-pulse" />
           <span>{simMessage}</span>
         </div>
@@ -350,11 +350,11 @@ export default function AdminConsoleView() {
           {/* Dense Filter Bar */}
           <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-wrap items-center gap-3 text-xs">
             <div className="flex items-center gap-1.5">
-              <span className="font-mono text-ink-2">Status:</span>
+              <span className="text-ink-2">Status:</span>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none"
+                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 focus:outline-none"
               >
                 <option value="">All Statuses</option>
                 <option value="Pending">Pending</option>
@@ -365,11 +365,11 @@ export default function AdminConsoleView() {
             </div>
 
             <div className="flex items-center gap-1.5">
-              <span className="font-mono text-ink-2">Category:</span>
+              <span className="text-ink-2">Category:</span>
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none"
+                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 focus:outline-none"
               >
                 <option value="">All Categories</option>
                 {filterMeta.event_categories.map((c) => (
@@ -381,11 +381,11 @@ export default function AdminConsoleView() {
             </div>
 
             <div className="flex items-center gap-1.5">
-              <span className="font-mono text-ink-2">State:</span>
+              <span className="text-ink-2">State:</span>
               <select
                 value={filterState}
                 onChange={(e) => setFilterState(e.target.value)}
-                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none"
+                className="bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 focus:outline-none"
               >
                 <option value="">All States</option>
                 {filterMeta.states.map((s) => (
@@ -416,7 +416,7 @@ export default function AdminConsoleView() {
                 onChange={(e) => setHideDuplicates(e.target.checked)}
                 className="rounded bg-white border-line text-amber focus:ring-0"
               />
-              <span className="text-[11px] font-mono">Hide Duplicates</span>
+              <span className="text-[11px]">Hide Duplicates</span>
             </label>
 
             <button
@@ -438,7 +438,7 @@ export default function AdminConsoleView() {
           <div className="bg-surface border border-line rounded-lg shadow-l2 overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="border-b border-line bg-surface-alt font-mono text-[11px] text-ink-1 uppercase tracking-wider">
+                <tr className="border-b border-line bg-surface-alt text-[11px] text-ink-1 uppercase tracking-wider font-semibold">
                   <th className="py-3 px-3.5 font-medium">Time / ID</th>
                   <th className="py-3 px-3.5 font-medium">Location</th>
                   <th className="py-3 px-3.5 font-medium">Event & Severity</th>
@@ -452,7 +452,7 @@ export default function AdminConsoleView() {
               <tbody className="divide-y divide-line-soft">
                 {reports.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-10 text-center text-ink-2 font-mono text-xs">
+                    <td colSpan={8} className="py-10 text-center text-ink-2 text-xs">
                       {loadingQueue ? 'Loading triage queue…' : 'No incident reports match this filter.'}
                     </td>
                   </tr>
@@ -466,7 +466,7 @@ export default function AdminConsoleView() {
                     return (
                       <tr key={r.id} className="hover:bg-surface-alt/60 transition-colors">
                         {/* Time & ID */}
-                        <td className="py-3 px-3.5 font-mono text-[11px] text-ink-1 whitespace-nowrap">
+                        <td className="py-3 px-3.5 text-[11px] text-ink-1 whitespace-nowrap">
                           <span className="font-semibold text-ink-0">#{r.id}</span>
                           <span className="block text-[10px] text-ink-2">{formattedTime}</span>
                         </td>
@@ -474,18 +474,18 @@ export default function AdminConsoleView() {
                         {/* Location */}
                         <td className="py-3 px-3.5 whitespace-nowrap">
                           <span className="font-medium text-ink-0 block">{r.city}</span>
-                          <span className="text-[11px] text-ink-2 font-mono block">{r.state}</span>
+                          <span className="text-[11px] text-ink-2 block">{r.state}</span>
                         </td>
 
                         {/* Event Category & Severity */}
                         <td className="py-3 px-3.5 whitespace-nowrap">
                           <span className="font-semibold text-ink-0 block">{r.event_category}</span>
                           <div className="flex items-center gap-1.5 mt-0.5">
-                            <span className="text-[10px] font-mono text-ink-2">
+                            <span className="text-[10px] text-ink-2">
                               {r.severity}
                             </span>
                             {r.is_duplicate && (
-                              <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-red-dim text-red border border-red/30">
+                              <span className="px-1.5 py-0.2 rounded text-[9px] bg-red-dim text-red border border-red/30">
                                 Duplicate
                               </span>
                             )}
@@ -498,14 +498,14 @@ export default function AdminConsoleView() {
                             {r.raw_text}
                           </p>
                           {r.admin_notes && (
-                            <span className="block text-[10px] font-mono text-amber mt-1 italic">
+                            <span className="block text-[10px] text-amber mt-1 italic">
                               Note: {r.admin_notes}
                             </span>
                           )}
                         </td>
 
                         {/* Source Handle */}
-                        <td className="py-3 px-3.5 whitespace-nowrap font-mono text-[11px]">
+                        <td className="py-3 px-3.5 whitespace-nowrap text-[11px]">
                           <span className="text-ink-0 block">{r.source?.handle || 'citizen_anon'}</span>
                           <span className="text-[10px] text-ink-2 block">{r.source?.type || 'Citizen Report'}</span>
                         </td>
@@ -575,7 +575,7 @@ export default function AdminConsoleView() {
               <h2 className="font-display font-semibold text-sm text-ink-0">
                 Source Provenance & Trust Registry
               </h2>
-              <p className="text-xs text-ink-2 font-mono mt-0.5">
+              <p className="text-xs text-ink-2 mt-0.5">
                 ACTIVE-LEARNING FEEDBACK LOOP · UPDATES ON OPERATOR DECISIONS
               </p>
             </div>
@@ -590,7 +590,7 @@ export default function AdminConsoleView() {
           <div className="bg-surface border border-line rounded-lg shadow-l2 overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="border-b border-line bg-surface-alt font-mono text-[11px] text-ink-1 uppercase tracking-wider">
+                <tr className="border-b border-line bg-surface-alt text-[11px] text-ink-1 uppercase tracking-wider font-semibold">
                   <th className="py-3 px-4 font-medium">Source Handle</th>
                   <th className="py-3 px-4 font-medium">Channel Type</th>
                   <th className="py-3 px-4 font-medium">Trust Score</th>
@@ -604,28 +604,28 @@ export default function AdminConsoleView() {
               <tbody className="divide-y divide-line-soft">
                 {sources.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-8 text-center text-ink-2 font-mono text-xs">
+                    <td colSpan={8} className="py-8 text-center text-ink-2 text-xs">
                       {loadingSources ? 'Loading sources…' : 'No registered sources in database.'}
                     </td>
                   </tr>
                 ) : (
                   sources.map((s) => (
                     <tr key={s.id} className="hover:bg-surface-alt/60 transition-colors">
-                      <td className="py-3 px-4 font-mono font-medium text-ink-0">{s.handle}</td>
+                      <td className="py-3 px-4 font-medium text-ink-0">{s.handle}</td>
                       <td className="py-3 px-4 text-ink-1">{s.type || 'Citizen Observation'}</td>
                       <td className="py-3 px-4">
                         {getCredibilityIndicator(s.trust_score)}
                       </td>
-                      <td className="py-3 px-4 text-center font-mono text-ink-0 font-medium">{s.total_reports}</td>
-                      <td className="py-3 px-4 text-center font-mono text-teal font-medium">{s.verified_reports}</td>
-                      <td className="py-3 px-4 text-center font-mono text-red font-medium">{s.rejected_reports}</td>
+                      <td className="py-3 px-4 text-center text-ink-0 font-medium">{s.total_reports}</td>
+                      <td className="py-3 px-4 text-center text-teal font-medium">{s.verified_reports}</td>
+                      <td className="py-3 px-4 text-center text-red font-medium">{s.rejected_reports}</td>
                       <td className="py-3 px-4 text-center">
                         {s.is_blacklisted ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-red-dim text-red border border-red/40">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-red-dim text-red border border-red/40">
                             <Ban className="w-3 h-3" /> Blacklisted
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-teal-dim text-teal border border-teal/40">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-teal-dim text-teal border border-teal/40">
                             Active Source
                           </span>
                         )}
@@ -633,7 +633,7 @@ export default function AdminConsoleView() {
                       <td className="py-3 px-4 text-right">
                         <button
                           onClick={() => handleToggleBlacklist(s.id)}
-                          className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-colors border ${
+                          className={`px-2.5 py-1 rounded text-[11px] font-medium transition-colors border ${
                             s.is_blacklisted
                               ? 'bg-teal-dim border-teal/40 text-teal hover:bg-teal hover:text-navy-950'
                               : 'bg-white border-line text-red hover:bg-red-dim hover:border-red/40'
@@ -661,14 +661,14 @@ export default function AdminConsoleView() {
               </h3>
               <button
                 onClick={() => setActioningId(null)}
-                className="text-ink-2 hover:text-ink-0 text-sm font-mono"
+                className="text-ink-2 hover:text-ink-0 text-sm"
               >
                 ✕
               </button>
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-ink-1 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-ink-1 uppercase tracking-wider mb-2">
                 Operational Justification / Notes
               </label>
               <textarea

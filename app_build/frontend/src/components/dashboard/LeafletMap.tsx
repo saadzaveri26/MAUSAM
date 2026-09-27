@@ -136,9 +136,9 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
             <div style="margin-bottom: 6px; font-size: 11.5px; color: #222; max-height: 80px; overflow-y: auto;">
               "${p.text}"
             </div>
-            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #666; font-family: monospace;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #666; font-family: inherit;">
               <span>Status: <strong>${p.status}</strong></span>
-              <span>#${p.id}</span>
+              <span>#{p.id}</span>
             </div>
           </div>
         `;
@@ -166,14 +166,14 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
           <span className="font-display font-semibold text-ink-0 text-sm">
             Live Spatial Incident Feed
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-white text-ink-1 font-mono text-[11px] border border-line shadow-xs">
+          <span className="px-2 py-0.5 rounded-full bg-white text-ink-1 text-[11px] border border-line shadow-xs">
             {filteredPoints.length} Geocoded Points
           </span>
         </div>
 
         {/* Severity Filter Badges */}
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[11px] font-mono text-ink-2 mr-1">Severity:</span>
+          <span className="text-[11px] text-ink-2 mr-1">Severity:</span>
           {['ALL', 'Severe', 'High', 'Moderate', 'Low'].map((sev) => {
             const isActive = selectedSeverity === sev;
             const color = sev === 'ALL' ? '#6E5D57' : SEVERITY_COLORS[sev];
@@ -181,7 +181,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
               <button
                 key={sev}
                 onClick={() => setSelectedSeverity(sev)}
-                className={`px-2 py-1 rounded text-[11px] font-mono transition-all border ${
+                className={`px-2 py-1 rounded text-[11px] transition-all border ${
                   isActive
                     ? 'bg-white text-ink-0 border-line shadow-l1 font-semibold'
                     : 'bg-transparent text-ink-2 border-transparent hover:text-ink-1'
@@ -197,7 +197,7 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="ml-2 bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 font-mono focus:outline-none shadow-xs"
+            className="ml-2 bg-white border border-line rounded px-2.5 py-1 text-xs text-ink-0 focus:outline-none shadow-xs"
           >
             <option value="ALL">All Categories</option>
             {categories.map((c) => (
@@ -217,16 +217,16 @@ export default function LeafletMap({ points, loading }: LeafletMapProps) {
         </div>
       </div>
 
-      {/* Map Viewport: dominant visual surface (min-height 520px) */}
-      <div className="relative w-full h-[520px] sm:h-[580px] bg-surface-alt">
+      {/* Map Viewport: dominant visual surface (constrained height and isolated stacking context) */}
+      <div className="relative w-full h-[520px] sm:h-[580px] bg-surface-alt isolate z-0 overflow-hidden">
         <div ref={mapContainerRef} className="w-full h-full" />
 
         {/* Operational Severity Legend */}
         <div className="absolute bottom-4 left-4 z-[400] bg-surface/95 border border-line rounded-md p-3 shadow-l3 text-xs space-y-2 pointer-events-auto backdrop-blur-none">
-          <span className="font-mono text-[10px] text-ink-2 uppercase tracking-wider block font-semibold">
+          <span className="text-[10px] text-ink-2 uppercase tracking-wider block font-semibold">
             IMD Alert Severity
           </span>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 font-mono text-[11px]">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-red border border-red/40"></span>
               <span className="text-ink-1">Severe / Warning</span>

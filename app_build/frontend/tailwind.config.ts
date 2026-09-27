@@ -13,7 +13,7 @@ const config: Config = {
         sans: ['var(--font-noto-sans)', 'sans-serif'],
         display: ['var(--font-noto-sans-display)', 'sans-serif'],
         serif: ['var(--font-newsreader)', 'Georgia', 'serif'],
-        mono: ['var(--font-plex-mono)', 'monospace'],
+        mono: ['var(--font-noto-sans)', 'sans-serif'],
       },
       borderRadius: {
         none: '0px',

@@ -149,3 +149,15 @@
     outline-offset: 2px;
   }
 }
+
+/* Leaflet map stacking isolation — never exceed sticky navbar (z-[1000]) */
+.leaflet-container {
+  z-index: 0 !important;
+}
+.leaflet-pane {
+  z-index: 100 !important;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 200 !important;
+}

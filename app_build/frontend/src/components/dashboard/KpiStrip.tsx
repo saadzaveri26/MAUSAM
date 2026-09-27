@@ -48,16 +48,16 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal"></span>
           </span>
-          <span className="font-mono text-xs font-medium text-ink-0">
+          <span className="text-xs font-semibold text-ink-0">
             Operational Telemetry Stream
           </span>
-          <span className="text-[11px] font-mono text-ink-2 hidden sm:inline">
+          <span className="text-[11px] text-ink-2 hidden sm:inline">
             · Updates every 20 seconds
           </span>
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-[11px] font-mono text-ink-2">
+          <span className="text-[11px] text-ink-2">
             Last polled:{' '}
             <span className="text-ink-1">
               {lastUpdated ? lastUpdated.toLocaleTimeString('en-IN', { hour12: false }) : 'Connecting…'}
@@ -80,7 +80,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Total Ingested */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Total Reports</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Total Reports</span>
             <FileText className="w-4 h-4 text-brand-primary" />
           </div>
           <div>
@@ -93,7 +93,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-ink-2 font-mono mt-0.5 block">
+            <span className="text-[10px] text-ink-2 mt-0.5 block">
               Multi-source ingest
             </span>
           </div>
@@ -102,7 +102,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Verified Ground-Truth */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Verified Truth</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Verified Truth</span>
             <CheckCircle2 className="w-4 h-4 text-teal" />
           </div>
           <div>
@@ -115,7 +115,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-ink-2 font-mono mt-0.5 block">
+            <span className="text-[10px] text-ink-2 mt-0.5 block">
               {verifiedPct}% operator confirmed
             </span>
           </div>
@@ -124,7 +124,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Pending Review */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Pending Queue</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Pending Queue</span>
             <Clock className="w-4 h-4 text-amber" />
           </div>
           <div>
@@ -137,7 +137,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-ink-2 font-mono mt-0.5 block">
+            <span className="text-[10px] text-ink-2 mt-0.5 block">
               Awaiting triage
             </span>
           </div>
@@ -146,7 +146,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Auto-Flagged Anomaly */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Auto-Flagged</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Auto-Flagged</span>
             <AlertTriangle className="w-4 h-4 text-red" />
           </div>
           <div>
@@ -159,7 +159,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-ink-2 font-mono mt-0.5 block">
+            <span className="text-[10px] text-ink-2 mt-0.5 block">
               Low credibility / noise
             </span>
           </div>
@@ -168,7 +168,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Duplicates Filtered */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Duplicates</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Duplicates</span>
             <CopyX className="w-4 h-4 text-ink-2" />
           </div>
           <div>
@@ -181,7 +181,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-ink-2 font-mono mt-0.5 block">
+            <span className="text-[10px] text-ink-2 mt-0.5 block">
               {duplicatePct}% cluster deduplicated
             </span>
           </div>
@@ -190,7 +190,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
         {/* Cadence / Last Hour */}
         <div className="bg-surface border border-line rounded-lg p-3.5 shadow-l1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-ink-2 mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider">Last Hour</span>
+            <span className="text-[11px] uppercase tracking-wider font-medium">Last Hour</span>
             <Radio className="w-4 h-4 text-teal" />
           </div>
           <div>
@@ -203,7 +203,7 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
                 '0'
               )}
             </div>
-            <span className="text-[10px] text-teal font-mono mt-0.5 block">
+            <span className="text-[10px] text-teal mt-0.5 block">
               Live ingest velocity
             </span>
           </div>

@@ -25,7 +25,7 @@ export default async function AdminPage() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <AdminConsoleView />
       </main>
-      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 font-mono bg-surface">
+      <footer className="border-t border-line py-4 px-6 text-center text-xs text-ink-2 bg-surface">
         MeghSetu · Privileged Disaster Management Verification Console · Government of India
       </footer>
     </div>

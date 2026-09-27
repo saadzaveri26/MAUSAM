@@ -61,7 +61,7 @@ function LoginForm() {
             <h1 className="font-display font-semibold text-lg text-ink-0 leading-tight">
               MeghSetu Admin Gate
             </h1>
-            <p className="text-xs text-ink-2 font-mono mt-0.5">
+            <p className="text-xs text-ink-2 mt-0.5 font-medium">
               RESTRICTED OPERATIONAL CONSOLE
             </p>
           </div>
@@ -89,7 +89,7 @@ function LoginForm() {
           <div>
             <label
               htmlFor="admin-token"
-              className="block text-xs font-medium text-ink-1 uppercase tracking-wider mb-2 font-mono"
+              className="block text-xs font-semibold text-ink-1 uppercase tracking-wider mb-2"
             >
               Operator Security Key
             </label>
@@ -101,7 +101,7 @@ function LoginForm() {
               placeholder="••••••••••••••••••••••••"
               disabled={loading || success}
               autoFocus
-              className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors font-mono shadow-xs"
+              className="w-full bg-white border border-line rounded-md px-3.5 py-2.5 text-sm text-ink-0 placeholder-ink-2 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-colors shadow-xs"
             />
           </div>
 
@@ -111,7 +111,7 @@ function LoginForm() {
             className="w-full bg-brand-primary hover:bg-brand-secondary active:scale-[0.98] text-navy-950 font-semibold text-sm py-2.5 px-4 rounded-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-l2"
           >
             {loading ? (
-              <span className="inline-block animate-pulse font-mono text-xs">Authenticating…</span>
+              <span className="inline-block animate-pulse text-xs">Authenticating…</span>
             ) : (
               <>
                 <span>Enter Admin Console</span>
@@ -121,7 +121,7 @@ function LoginForm() {
           </button>
         </form>
 
-        <div className="mt-8 pt-4 border-t border-line-soft flex items-center justify-between text-[11px] text-ink-2 font-mono">
+        <div className="mt-8 pt-4 border-t border-line-soft flex items-center justify-between text-[11px] text-ink-2 font-medium">
           <span>Authorized Personnel Only</span>
           <span className="text-amber/80">Secured Session</span>
         </div>
@@ -136,7 +136,7 @@ export default function AdminLoginPage() {
       fallback={
         <div className="min-h-screen bg-bg flex items-center justify-center p-4">
           <div className="w-full max-w-md bg-surface border border-line rounded-lg p-8 text-center">
-            <span className="text-xs text-ink-2 font-mono">Loading authentication gate…</span>
+            <span className="text-xs text-ink-2">Loading authentication gate…</span>
           </div>
         </div>
       }

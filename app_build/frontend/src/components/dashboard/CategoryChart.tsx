@@ -58,7 +58,7 @@ export default function CategoryChart({ data }: CategoryChartProps) {
             Event Categorization
           </h3>
         </div>
-        <span className="text-[11px] font-mono text-ink-2">
+        <span className="text-[11px] text-ink-2">
           Non-duplicate incident volume
         </span>
       </div>
@@ -77,7 +77,7 @@ export default function CategoryChart({ data }: CategoryChartProps) {
                   <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: config.color }} strokeWidth={1.5} />
                   {item.category}
                 </span>
-                <span className="font-mono text-[11px] text-ink-2">
+                <span className="text-[11px] text-ink-2">
                   <span className="text-ink-0 font-semibold">{item.count}</span> ({pct}%)
                 </span>
               </div>

@@ -16,7 +16,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-navy-900 border-b border-navy-800 sticky top-0 z-50 shadow-sm">
+    <header className="bg-navy-900 border-b border-navy-800 sticky top-0 z-[1000] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 rounded-md bg-white border border-navy-700 flex items-center justify-center p-1 group-hover:border-brand-primary transition-colors shadow-sm overflow-hidden">
@@ -32,7 +32,7 @@ export default function Header() {
             <span className="font-display font-bold text-sm tracking-tight text-white block leading-none">
               MeghSetu
             </span>
-            <span className="text-[10px] text-slate-300 font-mono block mt-0.5">
+            <span className="text-[10px] text-slate-300 font-sans block mt-0.5">
               MoES · India Meteorological Department
             </span>
           </div>
