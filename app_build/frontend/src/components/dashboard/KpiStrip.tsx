@@ -60,7 +60,9 @@ export default function KpiStrip({ summary, loading, lastUpdated, onRefresh }: K
           <span className="text-[11px] text-ink-2">
             Last polled:{' '}
             <span className="text-ink-1">
-              {lastUpdated ? lastUpdated.toLocaleTimeString('en-IN', { hour12: false }) : 'Connecting…'}
+              {lastUpdated
+                ? `${lastUpdated.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false })} IST`
+                : 'Connecting…'}
             </span>
           </span>
 

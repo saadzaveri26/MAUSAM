@@ -268,6 +268,39 @@ export default function AdminConsoleView() {
     );
   }
 
+  function formatIndianTime(dateStr: string) {
+    if (!dateStr) return '—';
+    const hasTimezone = /Z|[+-]\d{2}:?\d{2}$/i.test(dateStr);
+    const normalizedStr = hasTimezone ? dateStr : `${dateStr}Z`;
+    const d = new Date(normalizedStr);
+    if (isNaN(d.getTime())) return dateStr;
+
+    return d.toLocaleTimeString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  }
+
+  function formatFullIndianDateTime(dateStr: string) {
+    if (!dateStr) return '';
+    const hasTimezone = /Z|[+-]\d{2}:?\d{2}$/i.test(dateStr);
+    const normalizedStr = hasTimezone ? dateStr : `${dateStr}Z`;
+    const d = new Date(normalizedStr);
+    if (isNaN(d.getTime())) return dateStr;
+
+    return d.toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  }
+
   return (
     <div className="space-y-6">
       {/* Top Admin Controls & Toolbar */}
@@ -458,17 +491,20 @@ export default function AdminConsoleView() {
                   </tr>
                 ) : (
                   reports.map((r) => {
-                    const reportedDate = new Date(r.reported_at);
-                    const formattedTime = isNaN(reportedDate.getTime())
-                      ? r.reported_at
-                      : reportedDate.toLocaleTimeString('en-IN', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                    const formattedTime = formatIndianTime(r.reported_at);
+                    const fullIndianDateTime = formatFullIndianDateTime(r.reported_at);
 
                     return (
                       <tr key={r.id} className="hover:bg-surface-alt/60 transition-colors">
                         {/* Time & ID */}
                         <td className="py-3 px-3.5 text-[11px] text-ink-1 whitespace-nowrap">
                           <span className="font-semibold text-ink-0">#{r.id}</span>
-                          <span className="block text-[10px] text-ink-2">{formattedTime}</span>
+                          <span
+                            className="block text-[10px] text-ink-2"
+                            title={fullIndianDateTime}
+                          >
+                            {formattedTime} IST
+                          </span>
                         </td>
 
                         {/* Location */}

@@ -106,14 +106,22 @@ class WeatherReport(Base):
     admin_notes = Column(Text, nullable=True)
 
     def to_dict(self):
+        def _iso_utc(dt):
+            if not dt:
+                return None
+            s = dt.isoformat()
+            if not s.endswith("Z") and not ("+" in s or "-" in s[10:]):
+                return s + "Z"
+            return s
+
         return {
             "id": self.id,
             "raw_text": self.raw_text,
             "hashtags": self.hashtags,
             "media_url": self.media_url,
             "media_type": self.media_type,
-            "reported_at": self.reported_at.isoformat() if self.reported_at else None,
-            "ingested_at": self.ingested_at.isoformat() if self.ingested_at else None,
+            "reported_at": _iso_utc(self.reported_at),
+            "ingested_at": _iso_utc(self.ingested_at),
             "city": self.city,
             "state": self.state,
             "latitude": self.latitude,
@@ -132,7 +140,7 @@ class WeatherReport(Base):
             "severity": self.severity,
             "verification_status": self.verification_status.value if self.verification_status else None,
             "verified_by": self.verified_by,
-            "verified_at": self.verified_at.isoformat() if self.verified_at else None,
+            "verified_at": _iso_utc(self.verified_at),
             "admin_notes": self.admin_notes,
         }
 

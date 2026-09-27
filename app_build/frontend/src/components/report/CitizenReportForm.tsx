@@ -369,6 +369,22 @@ export default function CitizenReportForm() {
               <span className="text-ink-2">Status:</span>
               <span className="text-amber">Pending Admin Verification Queue</span>
             </div>
+            {mlResult.reported_at && (
+              <div className="flex justify-between text-[11px]">
+                <span className="text-ink-2">Timestamp:</span>
+                <span className="text-ink-0">
+                  {(() => {
+                    const str = mlResult.reported_at.endsWith('Z') || mlResult.reported_at.includes('+')
+                      ? mlResult.reported_at
+                      : mlResult.reported_at + 'Z';
+                    const d = new Date(str);
+                    return isNaN(d.getTime())
+                      ? mlResult.reported_at
+                      : `${d.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' })} IST`;
+                  })()}
+                </span>
+              </div>
+            )}
             <div className="flex justify-between text-[11px]">
               <span className="text-ink-2">Logged Text:</span>
               <span className="text-ink-0 italic truncate max-w-[280px]">{mlResult.raw_text}</span>
