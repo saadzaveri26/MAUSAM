@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAdminSession, getAdminTokenForApi } from '@/lib/auth';
-
-const BACKEND_URL = process.env.FASTAPI_BACKEND_URL || 'http://127.0.0.1:8000';
+import { getBackendUrl } from '@/lib/config';
 
 export async function POST(
   request: NextRequest,
@@ -19,8 +18,9 @@ export async function POST(
   }
 
   try {
+    const backendUrl = getBackendUrl();
     const res = await fetch(
-      `${BACKEND_URL}/api/analytics/sources/${id}/toggle-blacklist`,
+      `${backendUrl}/api/analytics/sources/${id}/toggle-blacklist`,
       {
         method: 'POST',
         headers: {

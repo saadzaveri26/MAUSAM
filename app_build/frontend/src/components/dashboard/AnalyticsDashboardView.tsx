@@ -31,17 +31,21 @@ export default function AnalyticsDashboardView() {
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
+  const isPollingRef = React.useRef(false);
+
   const fetchAllAnalytics = useCallback(async () => {
+    if (isPollingRef.current) return;
+    isPollingRef.current = true;
     try {
       setLoading(true);
       setError(null);
 
       const [sumRes, catRes, stRes, timeRes, mapRes] = await Promise.all([
-        fetch('/api/analytics/summary'),
-        fetch('/api/analytics/by-category'),
-        fetch('/api/analytics/by-state'),
-        fetch('/api/analytics/timeseries?days=14'),
-        fetch('/api/analytics/map-points?limit=500'),
+        fetch('/api/analytics/summary', { signal: AbortSignal.timeout(15000) }),
+        fetch('/api/analytics/by-category', { signal: AbortSignal.timeout(15000) }),
+        fetch('/api/analytics/by-state', { signal: AbortSignal.timeout(15000) }),
+        fetch('/api/analytics/timeseries?days=14', { signal: AbortSignal.timeout(15000) }),
+        fetch('/api/analytics/map-points?limit=500', { signal: AbortSignal.timeout(15000) }),
       ]);
 
       if (!sumRes.ok || !catRes.ok || !stRes.ok || !timeRes.ok || !mapRes.ok) {
@@ -66,15 +70,47 @@ export default function AnalyticsDashboardView() {
       setError(err.message || 'Error communicating with analytics pipeline');
     } finally {
       setLoading(false);
+      isPollingRef.current = false;
     }
   }, []);
 
   useEffect(() => {
     fetchAllAnalytics();
 
-    // 20-second operational polling interval
-    const interval = setInterval(fetchAllAnalytics, 20000);
-    return () => clearInterval(interval);
+    let intervalId: any = null;
+
+    const startPolling = () => {
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          if (typeof document !== 'undefined' && document.hidden) return;
+          fetchAllAnalytics();
+        }, 20000);
+      }
+    };
+
+    const stopPolling = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopPolling();
+      } else {
+        fetchAllAnalytics();
+        startPolling();
+      }
+    };
+
+    startPolling();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      stopPolling();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [fetchAllAnalytics]);
 
   return (

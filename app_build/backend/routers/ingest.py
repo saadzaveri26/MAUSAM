@@ -5,11 +5,12 @@ from database import get_db
 from schemas import IngestSimulateIn
 from ingestion.simulators import generate_synthetic_batch
 from pipeline import process_and_store
+from auth import require_admin
 
 router = APIRouter(prefix="/api/ingest", tags=["ingestion"])
 
 
-@router.post("/simulate")
+@router.post("/simulate", dependencies=[Depends(require_admin)])
 def simulate_ingestion(payload: IngestSimulateIn, db: Session = Depends(get_db)):
     """
     Simulates a real-time multi-source ingestion tick (what a Kafka consumer

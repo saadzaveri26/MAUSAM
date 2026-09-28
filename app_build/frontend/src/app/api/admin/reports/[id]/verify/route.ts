@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyAdminSession, getAdminTokenForApi } from '@/lib/auth';
-
-const BACKEND_URL = process.env.FASTAPI_BACKEND_URL || 'http://127.0.0.1:8000';
+import { getBackendUrl } from '@/lib/config';
 
 export async function PATCH(
   request: NextRequest,
@@ -20,7 +19,8 @@ export async function PATCH(
 
   try {
     const payload = await request.json();
-    const res = await fetch(`${BACKEND_URL}/api/reports/${id}/verify`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/reports/${id}/verify`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ADMIN_COOKIE_NAME, getExpectedAdminToken } from '@/lib/auth';
+import { ADMIN_COOKIE_NAME, getExpectedAdminToken, createSessionCookieValue } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,17 +16,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid admin token' }, { status: 401 });
     }
 
+    const sessionCookieValue = await createSessionCookieValue();
     const response = NextResponse.json({ success: true, message: 'Authenticated' });
 
-    // Set httpOnly session cookie
     response.cookies.set({
       name: ADMIN_COOKIE_NAME,
-      value: expectedToken.trim(),
+      value: sessionCookieValue,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-      maxAge: 60 * 60 * 24, // 24 hours
+      maxAge: 60 * 60 * 24,
     });
 
     return response;

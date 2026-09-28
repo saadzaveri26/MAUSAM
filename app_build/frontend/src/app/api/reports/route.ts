@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-const BACKEND_URL = process.env.FASTAPI_BACKEND_URL || 'http://127.0.0.1:8000';
+import { getBackendUrl } from '@/lib/config';
 
 export async function GET(request: NextRequest) {
   try {
     const search = request.nextUrl.search;
-    const res = await fetch(`${BACKEND_URL}/api/reports${search}`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/reports${search}`, {
       headers: {
         'Content-Type': 'application/json',
       },
+      signal: AbortSignal.timeout(15000),
       next: { revalidate: 0 },
     });
 

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAdminSession } from '@/lib/auth';
-
-const BACKEND_URL = process.env.FASTAPI_BACKEND_URL || 'http://127.0.0.1:8000';
+import { verifyAdminSession, getAdminTokenForApi } from '@/lib/auth';
+import { getBackendUrl } from '@/lib/config';
 
 export async function POST(request: NextRequest) {
   const isAuth = await verifyAdminSession();
@@ -9,14 +8,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized operator session' }, { status: 401 });
   }
 
+  const adminToken = await getAdminTokenForApi();
+  if (!adminToken) {
+    return NextResponse.json({ error: 'Admin token unavailable' }, { status: 403 });
+  }
+
   try {
     const body = await request.json();
     const count = body.count || 25;
+    const backendUrl = getBackendUrl();
 
-    const res = await fetch(`${BACKEND_URL}/api/ingest/simulate`, {
+    const res = await fetch(`${backendUrl}/api/ingest/simulate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Admin-Token': adminToken,
       },
       body: JSON.stringify({ count }),
     });

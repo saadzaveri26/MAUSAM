@@ -5,6 +5,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'MeghSetu — National Weather Big Data Analytics Platform',
   description: 'National Weather Big Data Analytics Platform | Real-Time Weather Intelligence & Incident Analytics',
+  icons: {
+    icon: '/brand/meghsetu-emblem.png',
+    shortcut: '/brand/meghsetu-emblem.png',
+    apple: '/brand/meghsetu-emblem.png',
+  },
 };
 
 export default function RootLayout({

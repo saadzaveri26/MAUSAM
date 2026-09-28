@@ -1,0 +1,14 @@
+{
+  "api": {
+    "image": ":meghsetu-service.api.latest",
+    "command": [],
+    "environment": {
+      "ADMIN_TOKEN": "REPLACE_WITH_GENERATED_32_CHAR_SECRET",
+      "ALLOWED_ORIGINS": "https://YOUR_VERCEL_PROJECT.vercel.app",
+      "DATABASE_URL": "sqlite:////app/data/weather_platform.db"
+    },
+    "ports": {
+      "8000": "HTTP"
+    }
+  }
+}

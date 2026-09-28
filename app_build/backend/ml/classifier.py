@@ -21,8 +21,6 @@ human-in-the-loop correction feeding back into retraining data (the Admin
 Panel's "reclassify" action stores corrections for this purpose).
 """
 import re
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
 
 KEYWORDS = {
     "Rainfall": ["rain", "rains", "rainfall", "downpour", "drizzle", "showers", "barish", "monsoon"],
@@ -51,6 +49,8 @@ def _bootstrap_training_data():
 
 class EventClassifier:
     def __init__(self):
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.naive_bayes import MultinomialNB
         texts, labels = _bootstrap_training_data()
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), min_df=1)
         X = self.vectorizer.fit_transform(texts)
@@ -111,4 +111,16 @@ class EventClassifier:
         return "Low"
 
 
-event_classifier = EventClassifier()
+_classifier_instance = None
+
+def get_event_classifier():
+    global _classifier_instance
+    if _classifier_instance is None:
+        _classifier_instance = EventClassifier()
+    return _classifier_instance
+
+class _LazyClassifierProxy:
+    def classify(self, *args, **kwargs):
+        return get_event_classifier().classify(*args, **kwargs)
+
+event_classifier = _LazyClassifierProxy()

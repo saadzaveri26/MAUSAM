@@ -225,13 +225,15 @@ MEGHSETU/
 
 ---
 
-### 3. Docker Deployment (Optional)
+### 3. Production Deployment (AWS Lightsail & Vercel)
 
-To spin up the entire application stack using Docker Compose:
+For complete step-by-step production deployment instructions, architecture order, environment configuration, and verification commands, see the dedicated deployment guide:
 
-```bash
-docker compose -f production_artifacts/deployment/docker-compose.yml up --build
-```
+👉 **[deploy/DEPLOY.md](deploy/DEPLOY.md)**
+
+* **Backend**: Containerized FastAPI service on AWS Lightsail Container Services (`ap-south-1`, `micro` power).
+* **Frontend**: Next.js 16 App Router on Vercel with server-side admin token gating.
+* **Automated Smoke Test**: Run `python scripts/smoke_test.py --api-url <LIGHTSAIL_URL> --frontend-url <VERCEL_URL> --token <TOKEN>` to verify end-to-end operational health.
 
 ---
 

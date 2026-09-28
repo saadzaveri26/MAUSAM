@@ -114,7 +114,7 @@ def map_points(db: Session = Depends(get_db), limit: int = 500):
     ]
 
 
-@router.get("/sources")
+@router.get("/sources", dependencies=[Depends(require_admin)])
 def sources(db: Session = Depends(get_db)):
     rows = db.query(Source).order_by(Source.trust_score.asc()).all()
     return [

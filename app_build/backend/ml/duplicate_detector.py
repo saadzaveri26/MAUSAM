@@ -12,8 +12,6 @@ geohash + time-bucket, running as a Spark/Flink streaming job. The interface
 (`find_duplicate`) is written so that swap-in is transparent to callers.
 """
 from datetime import timedelta
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 
 SIMILARITY_THRESHOLD = 0.62
 TIME_WINDOW_HOURS = 6
@@ -26,6 +24,9 @@ def find_duplicate(new_text: str, new_city: str, new_time, candidates: list):
     """
     if not candidates:
         return None
+
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.metrics.pairwise import cosine_similarity
 
     pool_texts = [new_text] + [c["raw_text"] for c in candidates]
     try:

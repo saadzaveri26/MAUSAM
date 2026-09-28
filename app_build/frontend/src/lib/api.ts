@@ -1,14 +1,12 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE ||
-  (typeof window !== 'undefined' && (window as any).WEATHER_API_BASE) ||
-  'http://127.0.0.1:8000';
+import { getBackendUrl } from './config';
 
 export async function apiFetch<T = any>(
   endpoint: string,
   options: RequestInit = {},
   adminToken?: string
 ): Promise<T> {
-  const url = `${API_BASE}${endpoint}`;
+  const base = getBackendUrl();
+  const url = `${base}${endpoint}`;
   const headers = new Headers(options.headers || {});
 
   if (!headers.has('Content-Type') && !(options.body instanceof FormData)) {
@@ -19,9 +17,12 @@ export async function apiFetch<T = any>(
     headers.set('X-Admin-Token', adminToken);
   }
 
+  const signal = options.signal || AbortSignal.timeout(15000);
+
   const res = await fetch(url, {
     ...options,
     headers,
+    signal,
   });
 
   if (!res.ok) {

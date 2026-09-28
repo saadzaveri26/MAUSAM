@@ -119,7 +119,9 @@ export default function AdminConsoleView() {
       p.set('hide_duplicates', hideDuplicates ? 'true' : 'false');
       p.set('limit', '80');
 
-      const res = await fetch(`/api/reports?${p.toString()}`);
+      const res = await fetch(`/api/reports?${p.toString()}`, {
+        signal: AbortSignal.timeout(15000),
+      });
       if (!res.ok) throw new Error('Failed to retrieve verification queue');
       const data = await res.json();
       setReports(data.results || []);
@@ -135,7 +137,9 @@ export default function AdminConsoleView() {
   const fetchSources = useCallback(async () => {
     setLoadingSources(true);
     try {
-      const res = await fetch('/api/analytics/sources');
+      const res = await fetch('/api/analytics/sources', {
+        signal: AbortSignal.timeout(15000),
+      });
       if (res.ok) {
         const data = await res.json();
         setSources(data);
@@ -462,8 +466,14 @@ export default function AdminConsoleView() {
           </div>
 
           {queueError && (
-            <div className="p-3 bg-red-dim border border-red/40 rounded-md text-xs text-red">
-              {queueError}
+            <div className="p-3 bg-red-dim border border-red/40 rounded-md text-xs text-red flex items-center justify-between">
+              <span>{queueError}</span>
+              <button
+                onClick={fetchQueue}
+                className="ml-3 px-2 py-0.5 rounded bg-surface border border-line text-ink-0 hover:bg-surface-alt text-[11px]"
+              >
+                Retry
+              </button>
             </div>
           )}
 
