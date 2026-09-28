@@ -1,135 +1,233 @@
-# MeghSetu — National Weather Big Data Analytics Platform
+# 🌩️ MeghSetu (मेघसेतु)
 
-**SIH 2026 · Problem Statement 26069 · National Weather Big Data Analytics Platform**
-Category: Software · Theme: Disaster Management
+### National Weather Big Data Analytics Platform
 
-A working prototype of a platform that ingests weather-related reports from
-social media, citizen submissions, and public sources; runs them through an
-ML pipeline for event classification, fake-report/credibility scoring, and
-duplicate detection; and surfaces the result on a real-time analytics
-dashboard and admin verification console.
-
----
-
-## What's actually working right now
-
-This is a functioning prototype, not a mockup — the backend, database, ML
-scoring, and all three frontend pages are wired together and were tested
-end-to-end while building this repo.
-
-| Feature from the PS | Status | Notes |
-|---|---|---|
-| Multi-source ingestion (social media, APIs, citizen reports) | ✅ Working | Citizen reports via a real HTTP endpoint; social/API sources via a realistic **simulated** ingestion batch (see "Why simulated ingestion" below) |
-| Metadata capture (date/time, city, state, GPS, media, category) | ✅ Working | Full schema in `models.py` |
-| Centralized database | ✅ Working | SQLite for the prototype, schema designed to move to PostgreSQL/TimescaleDB unchanged |
-| ML event categorization (rainfall, thunderstorm, flooding, heatwave, fog, dust storm, strong wind, +cyclone/hail/snow) | ✅ Working | Hybrid keyword-lexicon + TF-IDF/Naive Bayes classifier, `ml/classifier.py` |
-| Fake/misleading report detection | ✅ Working | Explainable heuristic scorer over source trust + content signals, `ml/fake_detector.py` |
-| Untrusted source verification | ✅ Working | Per-source trust score that updates from admin verify/reject decisions (`routers/reports.py`) |
-| Duplicate removal | ✅ Working | TF-IDF cosine similarity gated by city + time window, `ml/duplicate_detector.py` |
-| Web dashboard — date/event/location filters, real-time viz | ✅ Working | `app_build/frontend/dashboard/` — Chart.js + Leaflet, auto-refreshes every 20s |
-| Admin panel — verification status tracking | ✅ Working | `app_build/frontend/admin/` — verify/reject queue, source credibility table, one-click demo ingestion trigger |
-| Citizen reporting UI | ✅ Working | `app_build/frontend/citizen-report/` — captures GPS via browser geolocation, shows live ML classification result on submit |
-| Public landing page | ✅ Working | `html_landing_page/` |
-| Live Twitter/X, Facebook, IMD AWS API connectors | 🔶 Simulated | See note below — architecture is ready for live credentials |
-| Deployment artifacts (Docker, nginx) | ✅ Included | `production_artifacts/deployment/` |
-
-### Why simulated ingestion instead of live APIs?
-
-Twitter/X's filtered stream, Meta's Graph API, and IMD's AWS station feeds
-all require paid or allow-listed credentials that aren't obtainable for a
-hackathon prototype. Instead, `app_build/backend/ingestion/simulators.py`
-generates realistic, India-specific weather posts — including occasional
-clickbait/noise — that flow through the **exact same** processing pipeline
-a live connector would use. Every other component (classification,
-credibility scoring, deduplication, storage, dashboard, admin workflow) is
-running real code against real (synthetically-sourced) data, not mocked API
-responses. Swapping in live credentials later is a small, isolated change —
-see `production_artifacts/docs/DATA_FLOW.md`.
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 
 ---
 
-## Tech stack
+## 📌 Problem Statement & Overview
 
-| Layer | Technology |
-|---|---|
-| Backend API | **FastAPI** (Python 3.11), Uvicorn |
-| Database / ORM | **SQLAlchemy** over **SQLite** (prototype) — schema designed for a drop-in swap to PostgreSQL/TimescaleDB |
-| ML / AI | **scikit-learn** (TF-IDF, Multinomial Naive Bayes, cosine similarity), hand-tuned lexicons for Indian weather vocabulary |
-| Frontend | **Next.js** (App Router, TypeScript) + **Tailwind CSS** (UX4G 3.0 Token Translation) |
-| Design System | **UX4G Design System 3.0** (Government of India, MIT License) — Token Hybrid |
-| Data viz | **Chart.js** (analytics charts), **Leaflet.js** (live map, CARTO dark tiles) |
-| Landing page | Next.js Landing Page / Static HTML fallback |
-| Deployment | Docker, Docker Compose, Nginx (see `production_artifacts/deployment/`) |
+**Smart India Hackathon (SIH 2026) · Problem Statement 26069**  
+**Category:** Software | **Theme:** Disaster Management
 
----
+During extreme weather events (e.g., flash floods, heavy monsoons, severe thunderstorms, heatwaves), emergency responders and meteorological agencies face a critical challenge: **Information Deluge & Misinformation**. Unstructured weather reports flood social channels, news feeds, and citizen forums, but they are noisy, unverified, duplicated, and unformatted.
 
-## Attribution & Design System
-
-This product uses components and design tokens from the **UX4G Design System 3.0**, developed by the Government of India, released under the [MIT License](https://ux4g.gov.in). Use of the UX4G Design System does not imply official endorsement, approval, or affiliation with the Government of India.
+**MeghSetu** (*Bridge of Clouds*) is an end-to-end intelligent weather intelligence and big data ingestion platform designed to:
+1. **Ingest** continuous streams of social media feeds, citizen observations, and sensor datasets.
+2. **Process & Validate** reports in real-time through an explainable Machine Learning pipeline (Event Classification, Credibility & Fake-Detection Scoring, and Spatial-Temporal Deduplication).
+3. **Audit & Verify** uncertain observations via a human-in-the-loop Operator Verification Console.
+4. **Visualize & Alert** emergency decision-makers via a responsive, real-time Analytics Dashboard with geospatial incident mapping and strict **Indian Standard Time (IST, UTC+5:30)** synchronization.
 
 ---
 
-## Folder structure
+## ✨ Key Features & Capabilities
 
-```
-.agents/                      Reserved for AI coding-agent config (not used by the app)
-app_build/
-  backend/                    FastAPI app
-    main.py                   App entrypoint & router registration
-    database.py                SQLAlchemy engine/session
-    models.py                  ORM schema (WeatherReport, Source, AuditLog)
-    schemas.py                  Pydantic request/response models
-    pipeline.py                 Central ingest → ML → store pipeline
-    seed_data.py                 One-command demo data seeder
-    ml/
-      classifier.py            Event categorization
-      fake_detector.py          Credibility / fake-report scoring
-      duplicate_detector.py     Duplicate detection
-    ingestion/
-      simulators.py            Synthetic multi-source batch generator
-    routers/
-      reports.py, ingest.py, analytics.py
-  frontend/
-    dashboard/                Analytics dashboard (filters, KPIs, charts, live map)
-    admin/                    Admin panel (verification queue, source credibility)
-    citizen-report/            Public report submission form
-    shared/                    Shared theme.css + api.js used by all three pages
-html_landing_page/            Public marketing/info landing page
-production_artifacts/
-  deployment/                Dockerfile, docker-compose.yml, nginx.conf
-  docs/                       API_DOCUMENTATION.md, DATA_FLOW.md (with architecture diagram)
-  diagrams/                   (reserved for exported diagram images)
-```
+### 1. 🤖 Intelligent Multi-Stage ML Pipeline
+* **Event Classification (`ml/classifier.py`)**: Hybrid rule-based lexicon + Multinomial Naive Bayes classifier trained across 10 distinct weather categories (*Rainfall, Flood, Thunderstorm, Strong Wind, Dust Storm, Fog, Heatwave, Cyclone, Hail, Snow*). Handles bilingual and Indian-English weather vernacular (*"andhi"*, *"toofan"*, *"badal phatna"*, *"barsat"*).
+* **Heuristic Fake-Report & Credibility Scoring (`ml/fake_detector.py`)**: Computes a dynamic 0–100% credibility score based on source historical reliability, sensationalist language flags, clickbait hashtag ratios, and geographic consistency.
+* **Spatial-Temporal Duplicate Filtering (`ml/duplicate_detector.py`)**: Gated TF-IDF cosine similarity clustering that links redundant observations within the same city and time window (e.g., 3-hour cluster), preventing alert fatigue.
+
+### 2. 📊 Real-Time Operations Dashboard (`/dashboard`)
+* **Live Telemetry Stream**: Auto-polls every 20 seconds with visual indicators and immediate refresh triggers.
+* **KPI Matrix**: Tracks total reports, verified high-confidence reports, pending audit backlog, auto-flagged spam, and duplicates filtered.
+* **Interactive Geospatial Mapping**: Powered by Leaflet with severity-coded marker clusters and instant observation inspect cards.
+* **Analytical Distributions**: Hourly incident trend graphs, category distribution bars, and state-by-state risk rankings.
+
+### 3. 🛡️ Operator Verification Console (`/admin`)
+* **Privileged Audit Queue**: Filter by status (*Pending, Verified, Rejected*), event category, or state with keyword search.
+* **One-Click Audit Controls**: Operators can verify or reject observations in one click; actions dynamically update source trustworthiness scores in the background.
+* **Source Credibility & Blacklist Ledger**: Real-time management of automated bots, news handles, citizen reporters, and spammers.
+* **Batch Ingestion Simulator**: One-click synthetic injection of +25 realistic Indian weather incidents for live demonstration.
+
+### 4. 📍 Citizen Ground-Truth Intake (`/report`)
+* **Browser Geolocation API**: Captures exact GPS coordinates (Latitude/Longitude) with fallback to manual city selection.
+* **Instant ML Feedback**: When a citizen submits a report, the platform immediately runs inference, returning the detected category, calculated credibility score, and cluster duplicate status.
+
+### 5. ⏰ Full Indian Standard Time (IST) Compliance
+* All database timestamps are UTC-normalized (`ISO 8601`) and rendered natively in **Indian Standard Time (`Asia/Kolkata` / UTC+5:30)** across audit queues, dashboards, and submission records.
 
 ---
 
-## Running it locally
+## 🏛️ System Architecture
 
-**1. Backend**
+```mermaid
+flowchart TD
+    subgraph INGESTION["Data Ingestion Layer"]
+        A1["Citizen Web Form<br/>(Browser GPS + Media)"]
+        A2["Social Media Stream<br/>(X / Twitter, Meta)"]
+        A3["Sensor & Station Feeds<br/>(Automated Telemetry)"]
+        A4["Ingestion Simulator<br/>(25-item Realistic Batch)"]
+    end
 
-```bash
-cd app_build/backend
-pip install -r requirements.txt
-python seed_data.py          # populates ~180 realistic demo reports
-uvicorn main:app --reload --port 8000
+    subgraph BACKEND["FastAPI Processing Engine (Python)"]
+        B1["Ingestion Normalizer & Schema Validation"]
+        B2["Central ML Processing Pipeline"]
+        
+        subgraph ML["ML Pipeline"]
+            M1["Category Classifier<br/>(Lexicon + TF-IDF Naive Bayes)"]
+            M2["Credibility & Fake Scorer<br/>(Source Trust + Text Signals)"]
+            M3["Duplicate Cluster Detector<br/>(Cosine Sim + City Gating)"]
+        end
+        
+        B3["Audit Log & Source Trust Engine"]
+        B4["Database (SQLAlchemy / SQLite / Postgres)"]
+    end
+
+    subgraph CLIENT["Frontend Web Application (Next.js 16 + Tailwind)"]
+        C1["Home / Landing Page<br/>(/)"]
+        C2["Analytics Dashboard<br/>(/dashboard)"]
+        C3["Admin Verification Console<br/>(/admin)"]
+        C4["Citizen Reporting Form<br/>(/report)"]
+    end
+
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
+
+    B1 --> B2
+    B2 --> M1
+    B2 --> M2
+    B2 --> M3
+    M1 & M2 & M3 --> B3
+    B3 --> B4
+
+    B4 <-->|REST API / JSON| CLIENT
 ```
 
-API is now live at `http://localhost:8000` (Swagger docs at `/docs`).
+---
 
-**2. Frontend**
+## 📂 Project Directory Structure
 
-No build step — just open these files in a browser (they call the API at
-`http://localhost:8000` by default):
+```text
+MEGHSETU/
+├── app_build/
+│   ├── backend/                     # FastAPI Backend Application
+│   │   ├── main.py                  # API entrypoint and router configuration
+│   │   ├── database.py              # SQLAlchemy engine and session manager
+│   │   ├── models.py                # ORM models (WeatherReport, Source, AuditLog)
+│   │   ├── schemas.py               # Pydantic validation schemas
+│   │   ├── pipeline.py              # Central ingest -> ML -> persist pipeline
+│   │   ├── seed_data.py             # Realistic sample dataset seeder (~180 reports)
+│   │   ├── ml/                      # Machine learning engine
+│   │   │   ├── classifier.py        # Event categorization model
+│   │   │   ├── fake_detector.py     # Heuristic credibility & spam detector
+│   │   │   └── duplicate_detector.py# Deduplication & cluster detector
+│   │   ├── ingestion/
+│   │   │   └── simulators.py        # Synthetic multi-source incident generator
+│   │   ├── routers/
+│   │   │   ├── reports.py           # Report submission & verification routes
+│   │   │   ├── ingest.py            # Batch ingestion routes
+│   │   │   └── analytics.py         # Summary KPIs & chart metrics routes
+│   │   └── requirements.txt         # Python dependencies
+│   │
+│   └── frontend/                    # Next.js App Router Application
+│       ├── src/
+│       │   ├── app/
+│       │   │   ├── page.tsx         # Public Landing Page (Editorial & high-contrast)
+│       │   │   ├── layout.tsx       # Root layout & font definitions
+│       │   │   ├── dashboard/       # Analytics dashboard route
+│       │   │   ├── admin/           # Admin verification & login routes
+│       │   │   └── report/          # Citizen reporting route
+│       │   └── components/          # Reusable React components
+│       │       ├── admin/           # Admin verification console view
+│       │       ├── dashboard/       # KPI strip, Leaflet map, analytics charts
+│       │       ├── report/          # Citizen report submission form
+│       │       └── layout/          # Shared navigation and headers
+│       ├── tailwind.config.js       # Design tokens & color system
+│       ├── tsconfig.json            # TypeScript configuration
+│       └── package.json             # Frontend dependencies & scripts
+│
+├── production_artifacts/
+│   ├── deployment/                  # Docker, docker-compose & Nginx configurations
+│   └── docs/                        # Architecture & API specifications
+│
+└── README.md                        # Documentation (You are here)
+```
 
-- `app_build/frontend/dashboard/index.html` — main analytics dashboard
-- `app_build/frontend/admin/index.html` — admin/verification panel
-- `app_build/frontend/citizen-report/index.html` — citizen report form
-- `html_landing_page/index.html` — public landing page
+---
 
-To point the frontend at a different API URL (e.g. a deployed backend), set
-`window.WEATHER_API_BASE` before `api.js` loads on any page.
+## 🚀 Quickstart & Local Setup
 
-**3. Docker (full stack)**
+### Prerequisites
+* **Python 3.10+** (Python 3.11 recommended)
+* **Node.js 18+** or **20+** with `npm`
+
+---
+
+### 1. Backend Setup (FastAPI)
+
+1. Open a terminal and navigate to the backend directory:
+   ```bash
+   cd app_build/backend
+   ```
+
+2. Create and activate a Python virtual environment:
+   ```bash
+   # Windows (PowerShell)
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+
+   # Linux / macOS
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install required Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Populate the database with realistic sample reports:
+   ```bash
+   python seed_data.py
+   ```
+
+5. Launch the FastAPI development server:
+   ```bash
+   uvicorn main:app --reload --host 127.0.0.1 --port 8000
+   ```
+   * **API Root:** `http://127.0.0.1:8000`
+   * **Interactive API Docs (Swagger):** `http://127.0.0.1:8000/docs`
+
+---
+
+### 2. Frontend Setup (Next.js)
+
+1. Open a new terminal and navigate to the frontend directory:
+   ```bash
+   cd app_build/frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to:
+   * **Landing Page:** [http://localhost:3000](http://localhost:3000)
+   * **Analytics Dashboard:** [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+   * **Citizen Reporting:** [http://localhost:3000/report](http://localhost:3000/report)
+   * **Admin Verification:** [http://localhost:3000/admin](http://localhost:3000/admin) *(Demo Security Key: `admin`)*
+
+---
+
+### 3. Docker Deployment (Optional)
+
+To spin up the entire application stack using Docker Compose:
 
 ```bash
 docker compose -f production_artifacts/deployment/docker-compose.yml up --build
@@ -137,10 +235,54 @@ docker compose -f production_artifacts/deployment/docker-compose.yml up --build
 
 ---
 
-## Suggested next steps for a full build-out
+## 🔌 API Reference Overview
 
-1. Swap the simulated ingestion connector for live Twitter/X, Meta, and IMD AWS API credentials once available.
-2. Move from SQLite to PostgreSQL/TimescaleDB and put the ingestion pipeline behind Kafka for true streaming scale.
-3. Replace the Naive Bayes classifier with a fine-tuned transformer (e.g. IndicBERT) trained on IMD-labelled historical reports.
-4. Add authentication/roles to the Admin Panel (currently open for demo purposes).
-5. Add push-based live updates (WebSockets) instead of the current 20-second dashboard poll.
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Service health status check |
+| `GET` | `/api/reports` | List reports with pagination, state, status, category, & duplicate filters |
+| `POST` | `/api/reports/citizen` | Ingest citizen weather observation with GPS coords and instant ML scoring |
+| `POST` | `/api/reports/{id}/verify` | Operator audit endpoint: mark report as `Verified` or `Rejected` |
+| `GET` | `/api/reports/meta/filters` | Retrieve distinct states and active incident categories |
+| `POST` | `/api/ingest/simulate-batch` | Inject +25 simulated weather incident posts |
+| `GET` | `/api/analytics/kpis` | Real-time platform summary metrics (total, verified, pending, spam) |
+| `GET` | `/api/analytics/timeseries` | Hourly incident frequency breakdown for trend charts |
+| `GET` | `/api/analytics/map-points` | Lat/Lng incident coordinates for Leaflet geospatial map |
+| `GET` | `/api/analytics/events-breakdown` | Incident distribution by weather category |
+| `GET` | `/api/analytics/state-breakdown` | Incident distribution grouped by Indian state |
+
+Full interactive API documentation with schemas is available at `http://127.0.0.1:8000/docs`.
+
+---
+
+## 🎨 Design Tokens & UX Standards
+
+* **Design Inspiration:** Component tokens inspired by **UX4G Design System 3.0** (Open-source under MIT License).
+* **Color System:**
+  * **Brand Primary:** Coral Pink (`#EC6F8E`)
+  * **Brand Accent:** Terracotta Gold (`#D9762C`)
+  * **Dark Surface / Headers:** Deep Slate Navy (`#0B2A61`)
+  * **Body Background:** Clean Crisp White (`#FFFFFF`) with warm light elevation surfaces (`#FFF7F2`)
+* **Typography:** Clean sans-serif (`Inter`, `Noto Sans`) for high readability, coupled with high-contrast serif accents (`Fraunces`) on the landing page hero.
+
+---
+
+## 🗺️ Roadmap & Production Enhancements
+
+- [x] Machine Learning event categorization (Rainfall, Flood, Heatwave, Wind, etc.)
+- [x] Heuristic credibility and fake report detector
+- [x] Spatial-temporal deduplication engine
+- [x] Next.js 16 + Tailwind CSS responsive web interface
+- [x] Geospatial mapping with Leaflet & Indian Standard Time formatting
+- [ ] Direct integration with live social streaming endpoints (Kafka message queue)
+- [ ] Transformer-based multilingual NLP model (e.g., IndicBERT) for 22 scheduled Indian languages
+- [ ] Role-Based Access Control (RBAC) and OAuth2 / SSO for government emergency responders
+- [ ] Automated SMS & CAP (Common Alerting Protocol) push notifications for affected districts
+
+---
+
+## 📄 Disclaimer & License
+
+> **Notice:** MeghSetu is an independent prototype developed for the Smart India Hackathon (SIH 2026). It is not an official portal of any government ministry or department. All simulated weather reports and source handles are for demonstration purposes only.
+
+This project is licensed under the **MIT License**.
